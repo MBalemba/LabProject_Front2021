@@ -1,0 +1,218 @@
+
+body{
+    background-image: url("../../assets/image/background/dooodlesbludark.png");
+}
+
+
+body a {
+    text-decoration: none;
+    color: white;
+}
+
+
+body input, a:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+header {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #1F2024;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1364px;
+    display: flex;
+    text-transform: uppercase;
+    justify-content: space-between;
+}
+
+.leftHeader {
+    display: flex;
+    font-family: "Corbel";
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+}
+
+.mainLink {
+
+    display: flex;
+    align-items: center;
+    margin-right: 43px;
+}
+
+.mainLink a {
+    display: inline;
+}
+
+
+.menu {
+    display: flex;
+    position: static;
+    align-items: center;
+    min-width: 174px;
+    background-color: #1F2024;
+    color: white;
+    height: 70px;
+    -webkit-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    transition-duration: 1s;
+}
+
+
+.menu:hover{
+    color: #1F2024;
+    background-color: white;
+}
+
+.menu svg{
+    -webkit-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    transition-duration: 1s;
+    fill: white;
+}
+
+.menu:hover svg{
+    fill: #1F2024;
+}
+
+
+
+.divActive{
+    height: 10px;
+    width: 174px;
+    top: 0;
+    background-color: #1F2024;
+    position: absolute;
+}
+
+.menu:hover .divActive{
+    position: absolute;
+    height: 10px;
+    width: 174px;
+    background-color: #1F2024;
+}
+
+.menu p {
+    margin: 0 4px;
+}
+
+
+.menuButtom{
+    display: none;
+    -webkit-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    transition-duration: 1s;
+    transition-property: top;
+}
+
+.menu:hover .menuButtom{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 943px;
+    min-height: 52px;
+    top: 70px;
+    border-radius: 0 0 10px 10px;
+    margin-left: -4px ;
+    padding: 0px 4px 4px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 4px solid #1F2024;
+    border-top: 0px solid white;
+    -webkit-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    transition-duration: 1s;
+    transition-property: top;
+
+}
+.rubrik{
+    margin-top: 10px;
+    max-height: 600px;
+    overflow: auto;
+    width: 400px;
+    display: grid;
+    grid-template-rows: 40px;
+    grid-auto-rows: 40px;
+    grid-template-columns: 1fr 1fr ;
+    grid-auto-columns: 1fr 1fr ;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.linkButton{
+    color: #1F2024;
+
+}
+
+.linkButton:hover{
+    color: #61dafb;
+}
+
+
+
+
+.rightHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.input{
+    margin-right: 4px;
+    padding: 0px;
+    width: 583px;
+    height: 51px;
+    border: none;
+    border-radius:10px  0 0  10px;
+    -webkit-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.input:focus{
+    border: 4px solid #61dafb;
+
+}
+
+
+/*.buttonSearch{*/
+/*    height: 51px;*/
+/*    width: 51px;*/
+/*    border: none;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    border-radius:10px  0 0  10px;*/
+/*    -webkit-transition-duration: 0.5s;*/
+/*    -o-transition-duration: 0.5s;*/
+/*    -moz-transition-duration: 0.5s;*/
+/*    transition-duration: 0.5s;*/
+/*}*/
+
+.buttonSearch{
+    border: 4px solid white;
+    border-radius: 10px;
+}
+
+@font-face {
+    font-family: "CorbelBold";
+    src: url("../../assets/fonts/Corbel.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+

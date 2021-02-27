@@ -1,0 +1,102 @@
+.title{
+    position: relative;
+    margin-bottom: 80px;
+    font-size: 48px;
+    font-family: Corbel;
+}
+.title:after{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    width: 100%;
+    content: '';
+    height: 3px;
+    background-color: #707070;
+}
+.newsBlock {
+    color: white;
+    display: grid;
+    grid-template-columns: 341px 682px 341px;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+            'small1 big small3'
+            'small4 big small5';
+    height: 650px;
+    width: 100%;
+    max-height: 512px;
+
+}
+
+.newsBlock h2, p {
+    color: white;
+    display: inline-block;
+    margin: 0px;
+}
+
+.newsBlock h2 {
+    font-size: 18px;
+    display: block;
+}
+
+.newsBlock .child1, .child2, .child3, .child4, .child5 {
+
+    margin: 5px;
+
+
+}
+
+.child1 {
+    grid-area: small1;
+}
+
+.child2 {
+    grid-area: big;
+}
+
+.child3 {
+    grid-area: small3;
+}
+
+.child4 {
+    grid-area: small4;
+}
+
+.child5 {
+    grid-area: small5;
+}
+
+
+
+
+
+.Blockingrid {
+    background-color: rgba(0, 0, 0, .9);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.Blockingrid img {
+    opacity: 50%;
+    height: auto;
+    width: 100%;
+    z-index: 0;
+}
+
+.Blockingrid .contentBlock {
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    top: 0px;
+}
+
+.contentBlock .time{
+    display: flex;
+    align-items: center;
+}
+

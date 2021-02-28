@@ -10,27 +10,33 @@ let Section2 = (props) => {
         <>
             <h1 className={s.title}>Актульное на сегодня</h1>
             <div className={s.newsBlock}>
-                <div className={s.child1}>
-                    <NewContent SecondBlock={props.SecondBlock}/>
-                </div>
-                <div className={s.child2}>
-                    <NewContent SecondBlock={props.SecondBlock}/>
-                </div>
-                <div className={s.child3}>
-                    <NewContent SecondBlock={props.SecondBlock}/>
-                </div>
-                <div className={s.child4}>
-                    <NewContent SecondBlock={props.SecondBlock}/>
-                </div>
-                <div className={s.child5}>
-                    <NewContent SecondBlock={props.SecondBlock}/>
-                </div>
+                {props.SecondBlock.map((el,index)=>{
+                    return <div className={s[`child${index+1}`]}>
+                        <NewContent SecondBlock={props.SecondBlock[index]}/>
+                    </div>
+                })}
+                {/*<div className={s.child1}>*/}
+                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
+                {/*</div>*/}
+                {/*<div className={s.child2}>*/}
+                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
+                {/*</div>*/}
+                {/*<div className={s.child3}>*/}
+                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
+                {/*</div>*/}
+                {/*<div className={s.child4}>*/}
+                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
+                {/*</div>*/}
+                {/*<div className={s.child5}>*/}
+                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
+                {/*</div>*/}
             </div>
         </>
     )
 }
 
 const NewContent = (props) => {
+
     return (
         <div className={s.Blockingrid}>
 
@@ -39,7 +45,7 @@ const NewContent = (props) => {
                 <div></div>
 
                 <div >
-                    <h2>{props.SecondBlock.title}</h2>
+                   <NavLink to={`/${props.SecondBlock.type}/${props.SecondBlock.id}`}> <h2>{props.SecondBlock.title}</h2></NavLink>
                     <div className={s.time}>
                         <svg id="clock_hour_minute_second_time_timer_watch_icon_123193"
                              xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">

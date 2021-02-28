@@ -6,27 +6,27 @@ import Section2 from "./section2/Section2";
 
 
 const Homepage = (props) => {
+    let i = 0, j ;
+    let arr = [];
+    for (let key in props.firstPage){
+        if(props.firstPage[key][0]){
+            arr.push(props.firstPage[key][0]);
+        } else{
+            arr.push(props.firstPage.default[0])
+        }
 
+    i++;
+    if(i===5){
+        break;
+    }
+    }
 
     return (
         <main className={s.container}>
 
-
             <section className={s.sec}>
-
-                <Section2 SecondBlock = {props.SecondBlock}/>
-
+                <Section2 SecondBlock = {arr}/>
             </section>
-
-            {/*<section className={s.sec}>*/}
-            {/*    <h2>Посмотреть новости по тематике</h2>*/}
-            {/*    <p>Вы можете воспользоваться нашими фильтрами и выбрать просмотр статьи или новости по интересующий вас рубрике</p>*/}
-            {/*    <div className={s.changeBlock}>*/}
-            {/*        <div>*/}
-
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
 
             <footer>
 
@@ -39,8 +39,7 @@ const Homepage = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        FirstBlock: state.mainPage.firstPage.newsFirstBlock,
-        SecondBlock: state.mainPage.firstPage.newsSecondBlock[0],
+        firstPage: state.mainPage.Posts,
     }
 }
 

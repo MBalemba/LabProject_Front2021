@@ -27,12 +27,14 @@ header {
 }
 
 .container {
+    position: relative;
     width: 100%;
     max-width: 1364px;
     display: flex;
     text-transform: uppercase;
     justify-content: space-between;
 }
+
 
 .leftHeader {
     display: flex;
@@ -103,6 +105,10 @@ header {
     background-color: #1F2024;
 }
 
+.menu:hover p{
+    color: #1F2024;
+}
+
 .menu p {
     margin: 0 4px;
 }
@@ -120,10 +126,10 @@ header {
 .menu:hover .menuButtom{
 
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    width: 943px;
+    width: 100%;
     min-height: 52px;
+    left: 0px;
     top: 70px;
     border-radius: 0 0 10px 10px;
     margin-left: -4px ;
@@ -139,30 +145,47 @@ header {
     transition-property: top;
 
 }
+
 .rubrik{
-    margin-top: 10px;
-    max-height: 600px;
+    margin: 10px 0;
+    max-height: 1000px;
     overflow: auto;
-    width: 400px;
+    width: 560px;
     display: grid;
-    grid-template-rows: 40px;
-    grid-auto-rows: 40px;
-    grid-template-columns: 1fr 1fr ;
-    grid-auto-columns: 1fr 1fr ;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    grid-template-rows: 44px;
+    grid-auto-rows: 44px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+
 }
+
 
 .linkButton{
+    padding: 3px;
+    border: 3px solid white;
+    display: inline-block;
     color: #1F2024;
-
+    border-radius: 20px;
+    background-color: #E6E9EC;
 }
 
-.linkButton:hover{
+.linkButtonHover{
+    padding: 3px;
+    border: 3px solid #FB9F26;
+    display: inline-block;
+    color: #FB9F26;
+    border-radius: 20px;
+    background-color: #E6E9EC;
+}
+
+
+.linkButtonFollow{
+    padding: 3px;
+    border: 3px solid #61dafb;
+    display: inline-block;
     color: #61dafb;
+    border-radius: 20px;
+    background-color: #E6E9EC;
 }
-
-
 
 
 .rightHeader{
@@ -190,19 +213,6 @@ header {
 }
 
 
-/*.buttonSearch{*/
-/*    height: 51px;*/
-/*    width: 51px;*/
-/*    border: none;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    border-radius:10px  0 0  10px;*/
-/*    -webkit-transition-duration: 0.5s;*/
-/*    -o-transition-duration: 0.5s;*/
-/*    -moz-transition-duration: 0.5s;*/
-/*    transition-duration: 0.5s;*/
-/*}*/
 
 .buttonSearch{
     border: 4px solid white;
@@ -216,3 +226,59 @@ header {
     font-weight: normal;
 }
 
+
+@media (max-width: 1364px){
+    .container {
+        width: 100%;
+        max-width: 1024px;
+    }
+
+    .leftHeader {
+        display: flex;
+        justify-content: space-between;
+        font-family: "Corbel";
+        font-weight: bold;
+        width: 100%;
+        font-size: 24px;
+        color: white;
+    }
+
+    .rightHeader{
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+    @media (max-width: 1024px) {
+    .container {
+        width: 100%;
+        max-width: 724px;
+    }
+
+
+
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+    }
+    .leftHeader {
+        display: flex;
+        justify-content: space-around;
+        font-family: "Corbel";
+        font-weight: bold;
+        width: 100%;
+        font-size: 24px;
+        color: white;
+    }
+}
+
+@media (max-width: 482px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+}

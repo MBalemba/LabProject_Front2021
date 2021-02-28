@@ -7,3 +7,35 @@
     margin:0 auto;
 }
 
+
+
+@media (max-width: 1364px){
+    .app-wrapper-content{
+        max-width: 1024px;
+        margin:0 auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .app-wrapper-content{
+        max-width: 724px;
+        margin:0 auto;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    .app-wrapper-content{
+        max-width: 482px;
+        margin:0 auto;
+    }
+}
+
+@media (max-width: 482px) {
+
+}
+
+
+
+

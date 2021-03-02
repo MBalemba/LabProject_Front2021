@@ -30,8 +30,7 @@
 
 }
 
-.newsBlock.h2,p {
-    color: white;
+.newsBlock h2,p {
     display: inline-block;
     margin: 0px;
 }

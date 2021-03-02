@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import * as axios from "axios";
 import {Component} from "react";
 import {getToken} from "../../Api/api";
+import {setAuth} from "../../redux/auth-reducer";
 
 
 class Login extends Component {
@@ -11,23 +12,37 @@ class Login extends Component {
         login: '',
         password: '',
         authCancel: false,
+        authProcessing: false,
     }
 
     enterData = () => {
-        debugger
-        const instance1 = axios.create({
-            withCredentials: true,
-            timeout: 3000,
+
+        this.setState({
+            authProcessing: true,
+            authCancel: false,
         })
 
-        instance1.post('http://localhost:5500/login',{login: this.state.login, password: this.state.password}
+        getToken({login: this.state.login, password: this.state.password}
         ).then(
-            response => {
-                debugger
-                console.dir(response.data)
+            accessToken => {
+
+                this.setState({
+                    authProcessing: false,
+                    authSucsesfull: true,
+                });
+
+                setTimeout(() => {
+                    this.setState({
+                        authSucsesfull: false
+                    })
+                }, 1000);
+
+                this.props.setAuth(accessToken);
             },
             e => {
-                debugger
+                this.setState({
+                    authProcessing: false
+                })
                 this.setState({
                         authCancel: true
                     }
@@ -58,13 +73,17 @@ class Login extends Component {
                     <div className={s.content}>
                         <div className={s.input}>
                             <p>Логин</p>
-                            <input value={this.state.login} placeholder={'логин'} type="text" onChange={(e) => {
+                            <input onFocus={() => {
+                                this.setState({authCancel: false})
+                            }} value={this.state.login} placeholder={'логин'} type="text" onChange={(e) => {
                                 this.change(e.currentTarget, 'login')
                             }}/>
                         </div>
                         <div className={s.input}>
                             <p>Пароль</p>
-                            <input value={this.state.password} placeholder={'пароль'} type="password" onChange={(e) => {
+                            <input onFocus={() => {
+                                this.setState({authCancel: false})
+                            }} value={this.state.password} placeholder={'пароль'} type="password" onChange={(e) => {
                                 this.change(e.currentTarget, 'password')
                             }}/>
                         </div>
@@ -73,10 +92,14 @@ class Login extends Component {
                                 Войти
                             </button>
                         </div>
+
                         {this.state.authCancel ? <div className={s.warning}>
                             <p>Вы ввели неправильный логин или пароль!</p>
                         </div> : ''
                         }
+                        {this.state.authProcessing ? 'Загрузка...' : ''}
+                        {this.state.authSucsesfull ? 'Успешно...' : ''}
+
                     </div>
                 </form>
             </main>
@@ -91,4 +114,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {})(Login);
+export default connect(mapStateToProps, {setAuth})(Login);

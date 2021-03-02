@@ -9,8 +9,10 @@ const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case  CHANGE_AUTH:
             return {
-
-                }
+                    ...state,
+                    isAuth: true,
+                    key: action.key
+            }
         default:
             return state;
     }
@@ -19,7 +21,6 @@ const authReducer = (state = initialState, action) => {
 export const setAuth = (key) =>{
     return {
         type:CHANGE_AUTH,
-        flag: true,
         key: key,
     }
 }

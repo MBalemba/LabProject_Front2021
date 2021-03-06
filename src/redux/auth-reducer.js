@@ -1,13 +1,19 @@
 const CHANGE_AUTH = 'CHANGE_AUTH';
 
 const initialState = {
-    isAuth: false,
+    isAuth: sessionStorage.getItem('isAuth')?sessionStorage.getItem('isAuth'):false,
     key: null,
 }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case  CHANGE_AUTH:
+            if(sessionStorage.getItem('isAuth')===null){
+                sessionStorage.setItem('isAuth', true);
+            };
+            if(sessionStorage.getItem('key')===null){
+                sessionStorage.setItem('key', action.key)
+        }
             return {
                     ...state,
                     isAuth: true,

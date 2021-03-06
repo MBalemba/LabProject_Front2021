@@ -4,6 +4,7 @@ import * as axios from "axios";
 import {Component} from "react";
 import {getToken} from "../../Api/api";
 import {setAuth} from "../../redux/auth-reducer";
+import { Redirect } from 'react-router';
 
 
 class Login extends Component {
@@ -13,6 +14,7 @@ class Login extends Component {
         password: '',
         authCancel: false,
         authProcessing: false,
+
     }
 
     enterData = () => {
@@ -31,10 +33,12 @@ class Login extends Component {
                     authSucsesfull: true,
                 });
 
+
+
                 setTimeout(() => {
                     this.setState({
-                        authSucsesfull: false
-                    })
+                        authSucsesfull: false,
+                    });
                 }, 1000);
 
                 this.props.setAuth(accessToken);
@@ -65,6 +69,12 @@ class Login extends Component {
     }
 
     render() {
+
+        if (this.props.isAuth){
+            debugger
+           console.log( sessionStorage.getItem('isAuth' ) === null);
+            return <Redirect to="/CMS"/>
+        }
         return (
             <main className={s.container}>
                 <form className={s.form} onSubmit={e => {
@@ -111,6 +121,7 @@ class Login extends Component {
 let mapStateToProps = (state) => {
     return {
         firstPage: state.mainPage.Posts,
+        isAuth:state.auth.isAuth,
     }
 }
 

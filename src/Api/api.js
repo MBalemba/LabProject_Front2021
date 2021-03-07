@@ -12,3 +12,7 @@ const instance1 = axios.create({
 export function getToken({login, password }){
     return instance1.post( '/login',{login: login, password: password}).then(response=>response.data.accessToken)
 }
+
+export function getRubrick(){
+    return instance1.get('/rubrick')
+}

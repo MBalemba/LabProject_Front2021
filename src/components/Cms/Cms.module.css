@@ -1,5 +1,11 @@
 
+.backgr{
+    overflow: hidden;
+    background-color: #E6E9EC;
+}
 .container{
+    font-family: "Segoe UI";
+    overflow: hidden;
     margin: 0 auto;
     position: relative;
     min-height: 100vh;

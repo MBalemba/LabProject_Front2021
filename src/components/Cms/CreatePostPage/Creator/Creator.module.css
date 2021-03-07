@@ -1,13 +1,41 @@
+
+
+.relative{
+    position: absolute;
+    bottom: 0;
+}
+
 .createwind{
+    transition:all 0.5s;
+    font-family: "Segoe UI";
+    font-size: 18px;
     position: absolute;
     box-sizing: content-box;
     display: grid;
     grid-template-columns: 3fr 1fr;
     width: 100%;
     height: 400px;
-    background-color: rgba(112, 112, 112, 0.1);;
+    background-color: rgba(112, 112, 112, 0.1);
     bottom: 0px;
-    border: 2px solid ;
+    border: 2px solid #F78306;
+    border-right: 0px;
+    border-left: 0px;
+    border-top: 0px;
+    border-radius: 10px 10px 0 0;
+}
+
+.createwind.down{
+    transform: translate(0px,404px);
+    -webkit-transform: translate(0px,404px);
+    -o-transform: translate(0px,404px);
+    -moz-transform: translate(0px,404px);
+}
+
+.left{
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
 }
 
 .addTitle{
@@ -17,6 +45,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .addTitle .textarea{
@@ -37,3 +66,117 @@
     border: 0px;
     height: 81px;
 }
+
+
+/*start add text*/
+
+.addText{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.addText textarea{
+    box-sizing: border-box;
+    width: 100%;
+    height: 80%;
+    resize: none;
+    margin-bottom: 10px;
+
+}
+
+.addText button{
+    font-size: 14px;
+    width: 20%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 20%;
+}
+
+/*leftside end*/
+
+
+
+
+/*rightside start*/
+
+.right{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.right button{
+    height: 100%;
+    width: 100%;
+}
+
+.addImg{
+    font-size: 18px;
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.grip{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 32px;
+    background-color: #61dafb;
+    border-radius: 20px 20px 0px 0px;
+    border: 1px solid #1F2024;
+    transform: translate(0px,-45px);
+    -webkit-transform: translate(0px,-45px);
+    -o-transform: translate(0px,-45px);
+    -moz-transform: translate(0px,-45px);
+}
+
+.grip svg{
+    transition:all 0.1s;
+    height: 70%;
+    width: 70%;
+}
+.grip:hover svg{
+    height: 70%;
+    width: 70%;
+    transform: rotate(1.5turn);
+    -webkit-transform: rotate(0.5turn);
+    -o-transform: rotate(0.5turn);
+    -moz-transform:  rotate(0.5turn);
+}
+
+
+.grip.down{
+    transition:all 0.1s;
+    height: 62px;
+    transform: translate(0px,-72px);
+    -webkit-transform: translate(0px,-72px);
+    -o-transform: translate(0px,-72px);
+    -moz-transform: translate(0px,-72px);
+}
+
+.grip.down svg{
+    transform: rotate(1.5turn);
+}
+
+.grip.down:hover svg{
+    transform: rotate(0turn)
+}
+
+
+
+
+
+

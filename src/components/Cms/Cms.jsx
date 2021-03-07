@@ -6,12 +6,12 @@ import CreatePostPage from "./CreatePostPage/CreatePostPage";
 
 
 const Cms = () => {
-    return (<>
+    return (<div    className={s.backgr}>
             <Aside />
             <div className={s.container}>
                 <Route path='/CMS/CreatePostPage' render={() => <CreatePostPage/>}/>
             </div>
-        </>
+        </div>
     )
 }
 

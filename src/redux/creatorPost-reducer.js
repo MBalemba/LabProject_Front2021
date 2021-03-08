@@ -1,5 +1,8 @@
 const SET_RUBRICK = 'SET_RUBRICK';
 const SET_TYPE = 'SET_TYPE';
+const SET_TITLE = 'SET_TITLE';
+
+
 const data = new Date();
 const arrMonth = [
     'Январь',
@@ -17,7 +20,7 @@ const arrMonth = [
 
 const initialState = {
     postObj: {
-        title: 'Добавьте заголовок',
+        title: '',
         data: {
             day: data.getDate(),
             month: arrMonth[data.getMonth() - 1],
@@ -46,6 +49,11 @@ const creatorPostReducer = (state = initialState, action) => {
                 ...state,
                 postObj: {...state.postObj, type: action.rubrick}
             }
+        case SET_TITLE:
+            return{
+                ...state,
+                postObj: {...state.postObj, title: action.title}
+            }
         default:
             return state;
     }
@@ -62,6 +70,13 @@ export const setType = (type) => {
     return {
         type: SET_TYPE,
         rubrick: type
+    }
+}
+
+export const setTitle = (title) => {
+    return {
+        type: SET_TITLE,
+        title: title
     }
 }
 

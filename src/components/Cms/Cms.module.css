@@ -1,5 +1,6 @@
 
 .backgr{
+    position: relative;
     overflow: hidden;
     background-color: #E6E9EC;
 }
@@ -7,7 +8,6 @@
     font-family: "Segoe UI";
     overflow: hidden;
     margin: 0 auto;
-    position: relative;
     min-height: 100vh;
     max-width: 1364px;
 }

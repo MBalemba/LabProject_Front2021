@@ -1,6 +1,6 @@
 import s from './CreatePostPage.module.css'
 import {connect} from "react-redux";
-import Creator from "./Creator/Creator";
+import Creator from "./MainContent/Creator/Creator";
 import {Component} from "react";
 import {getRubrick} from "../../../Api/api";
 import {setRubrick, setTitle, setType} from "../../../redux/creatorPost-reducer";
@@ -16,12 +16,11 @@ class CreatePostPage extends Component {
     render() {
         return (<>
                 <Prevue  {...this.props}/>
-                <MainContent />
-                <Creator/>
+                <MainContent  postObj = {this.props.creatorPost.postObj}/>
             </>
         )
     }
-}
+};
 
 
 const mapStateToProps = (state) => ({

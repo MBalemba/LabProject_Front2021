@@ -1,6 +1,9 @@
+import {getBase64} from "../assets/utils/getBase64";
+
 const SET_RUBRICK = 'SET_RUBRICK';
 const SET_TYPE = 'SET_TYPE';
 const SET_TITLE = 'SET_TITLE';
+const ADD_CONTENT = 'ADD_CONTENT';
 
 
 const data = new Date();
@@ -54,6 +57,12 @@ const creatorPostReducer = (state = initialState, action) => {
                 ...state,
                 postObj: {...state.postObj, title: action.title}
             }
+        case ADD_CONTENT:
+            debugger
+            return{
+                ...state,
+                postObj: {...state.postObj, content: [...state.postObj.content, ...action.dataArr ] }
+            }
         default:
             return state;
     }
@@ -78,6 +87,20 @@ export const setTitle = (title) => {
         type: SET_TITLE,
         title: title
     }
+}
+
+export const addContent = (dataArr) => {
+    debugger
+    return {
+        type: ADD_CONTENT,
+        dataArr: dataArr,
+    }
+}
+
+export const getBase64toState = (e)=> (dispatch) =>{
+    debugger
+    getBase64(e,dispatch,addContent);
+
 }
 
 export default creatorPostReducer;

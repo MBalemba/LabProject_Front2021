@@ -1,4 +1,5 @@
 .coloda{
+    position: relative;
     width: 100%;
     height: auto;
     display: flex;
@@ -7,14 +8,31 @@
     flex-direction: column;
 }
 
+.wraper{
+    margin-bottom: 40px;
+    margin-top: 40px;
+    position: relative;
+    width: 820px;
+    height: 485px;
+}
+
 .card{
-    width: 80%;
-    height: 200px;
+    position: absolute;
+    z-index: 1;
+    width: 820px;
+    height: 485px;
     border: 5px solid;
-    margin: 20px;
     cursor: grab;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
+
+.contentCard{
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+}
+
 

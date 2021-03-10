@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import Creator from "./MainContent/Creator/Creator";
 import {Component} from "react";
 import {getRubrick} from "../../../Api/api";
-import {setRubrick, setTitle, setType} from "../../../redux/creatorPost-reducer";
+import {deleteContent, editText, setRubrick, setTitle, setType} from "../../../redux/creatorPost-reducer";
 import Prevue from "./Prevue/Prevue";
 import MainContent from "./MainContent/MainContent";
 
@@ -16,7 +16,7 @@ class CreatePostPage extends Component {
     render() {
         return (<>
                 <Prevue  {...this.props}/>
-                <MainContent  postObj = {this.props.creatorPost.postObj}/>
+                <MainContent deleteContent ={this.props.deleteContent} editText={this.props.editText} postObj = {this.props.creatorPost.postObj}/>
             </>
         )
     }
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps, {setRubrick, setType, setTitle})(CreatePostPage)
+export default connect(mapStateToProps, {setRubrick, setType, setTitle, editText, deleteContent})(CreatePostPage)

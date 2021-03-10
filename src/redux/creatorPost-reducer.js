@@ -1,12 +1,15 @@
 import {getBase64} from "../assets/utils/getBase64";
 
-const SET_RUBRICK = 'SET_RUBRICK';
-const SET_TYPE = 'SET_TYPE';
-const SET_TITLE = 'SET_TITLE';
-const ADD_CONTENT = 'ADD_CONTENT';
+const SET_RUBRICK = 'SET_RUBRICK'
+    , SET_TYPE = 'SET_TYPE'
+    , SET_TITLE = 'SET_TITLE'
+    , ADD_CONTENT = 'ADD_CONTENT'
+    , SET_SUBTITLE = 'SET_SUBTITLE'
+    , SET_TEXT = 'SET_TEXT'
+    , EDIT_TEXT = 'EDIT_TEXT'
+    , DELETE_CONTENT = 'DELETE_CONTENT'
 
-
-const data = new Date();
+const  data = new Date();
 const arrMonth = [
     'Январь',
     'Февраль',
@@ -53,20 +56,44 @@ const creatorPostReducer = (state = initialState, action) => {
                 postObj: {...state.postObj, type: action.rubrick}
             }
         case SET_TITLE:
-            return{
+            return {
                 ...state,
                 postObj: {...state.postObj, title: action.title}
             }
         case ADD_CONTENT:
-            debugger
+            return {
+                ...state,
+                postObj: {...state.postObj, content: [...state.postObj.content, ...action.dataArr]}
+            }
+        case SET_TEXT:
             return{
                 ...state,
-                postObj: {...state.postObj, content: [...state.postObj.content, ...action.dataArr ] }
+                postObj: {...state.postObj, content: [...state.postObj.content, action.text]}
             }
+        case EDIT_TEXT:
+            return{
+                ...state,
+                postObj: {...state.postObj, content: state.postObj.content.map(
+                    (el,index) =>
+                    {if(index === action.index) return {tag: 'p', src: action.text}; return el})
+            }}
+        case DELETE_CONTENT:
+            debugger
+            let arr = state.postObj.content.map((el)=>({...el}));
+            arr.splice(action.index,1);
+                return {
+                    ...state,
+                    postObj: {
+                        ...state.postObj, content: arr,
+                    }
+                }
         default:
             return state;
     }
 }
+
+
+
 
 export const setRubrick = (obj) => {
     return {
@@ -97,9 +124,39 @@ export const addContent = (dataArr) => {
     }
 }
 
-export const getBase64toState = (e)=> (dispatch) =>{
+export const getBase64toState = (e) => (dispatch) => {
     debugger
-    getBase64(e,dispatch,addContent);
+    getBase64(e, dispatch, addContent);
+}
+
+export const AddSubtitle = (subtitle) => {
+    return {
+        type: SET_SUBTITLE,
+        subtitle: subtitle
+    }
+}
+
+export const AddText = (text) => {
+    return {
+        type: SET_TEXT,
+        text: {tag: 'p', src: text}
+    }
+}
+
+export const editText = (text, index) => {
+    debugger
+    return{
+        type: EDIT_TEXT,
+        index: index,
+        text: text
+    }
+}
+
+export const deleteContent = (index) => {
+    return{
+        type: DELETE_CONTENT,
+        index: index,
+    }
 
 }
 

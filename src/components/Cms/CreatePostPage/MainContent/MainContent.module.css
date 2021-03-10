@@ -9,30 +9,85 @@
 }
 
 .wraper{
-    margin-bottom: 40px;
-    margin-top: 40px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-top: 10px;
     position: relative;
     width: 820px;
-    height: 485px;
+    height: auto;
 }
 
 .card{
     position: absolute;
+    box-sizing: border-box;
     z-index: 1;
     width: 820px;
-    height: 485px;
-    border: 5px solid;
+    height: 100%;
     cursor: grab;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    word-wrap: break-word;
+}
+.card:hover{
+    border: 5px solid #61dafb;
 }
 
 .contentCard{
-    padding: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     height: 100%;
     width: 100%;
 }
 
+.contentCard.img{
+    object-fit: cover;
+    height: 400px;
+    width: 100%;
+}
+
+.contentCard.p{
+    word-wrap: break-word;
+    vertical-align: top;
+    height: auto;
+    width: auto;
+    padding: 20px;
+}
+
+.controlPanel{
+    border: 0px;
+    display: flex;
+    position: absolute;
+    z-index: 3;
+    top: 0px;
+    right: 0px;
+}
+
+
+
+.editModal{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    z-index: 50;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0, 0.5);
+}
+.wrapTextArea{
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 600px;
+    width: 320px;
+    background-color: #707070;
+}
+
+.editModal textarea{
+    resize: none;
+    height: 100%;
+}
 

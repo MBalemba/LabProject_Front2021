@@ -2,14 +2,17 @@ import s from './Creator.module.css'
 import {connect} from "react-redux";
 import {Component} from "react";
 import React from 'react';
-import {getBase64} from "../../../../../assets/utils/getBase64";
-import {addContent, getBase64toState} from "../../../../../redux/creatorPost-reducer";
+import {addContent, AddText, getBase64toState} from "../../../../../redux/creatorPost-reducer";
 
 
 class Creator extends Component {
-    state = {
-        modaldown: true,
-        refFile: React.createRef()
+    constructor() {
+        super();
+        this.state = {
+            modaldown: true,
+            refFile: React.createRef(),
+            textInfo: ''
+        }
     }
 
     modalMove() {
@@ -23,6 +26,22 @@ class Creator extends Component {
         this.props.getBase64toState(e);
     }
 
+    addText(e) {
+        debugger
+        console.log(this.state.textInfo)
+        if(e.target.tagName === 'TEXTAREA' && e.type === 'change'){
+            this.setState({
+                textInfo: e.target.value
+            })
+        }
+        if (e.currentTarget.tagName === 'BUTTON' && e.type === 'click'){
+           this.props.AddText(this.state.textInfo);
+           this.setState({
+               textInfo: ''
+           })
+        }
+
+    }
 
     render() {
         return (<>
@@ -31,7 +50,7 @@ class Creator extends Component {
 
                         <div className={s.addTitle}>
                             <div value={'sdsd'} contentEditable={true} className={s.textarea}>
-                                Добавьте текст
+
                             </div>
                             <button>
                                 <svg id="plus" xmlns="http://www.w3.org/2000/svg" width="78.844" height="81"
@@ -49,11 +68,11 @@ class Creator extends Component {
                             </button>
                         </div>
 
-                        <div className={s.addText}>
-                        <textarea name="" id="">
+                        <div onChange={this.addText.bind(this)} className={s.addText}>
+                        <textarea value={this.state.textInfo} >
 
                         </textarea>
-                            <button>
+                            <button onClick={this.addText.bind(this)} disabled={!this.state.textInfo.trim()?true:false} >
                                 <p>Добавить блок с текстом на страницу</p>
                                 <svg id="plus" xmlns="http://www.w3.org/2000/svg" width="36.058" height="37.044"
                                      viewBox="0 0 36.058 37.044">
@@ -122,6 +141,8 @@ class Creator extends Component {
             </>
         )
     }
+
+
 }
 
 
@@ -129,4 +150,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
 })
 
-export default connect(mapStateToProps, {addContent, getBase64toState})(Creator)
+export default connect(mapStateToProps, {addContent, getBase64toState, AddText})(Creator)

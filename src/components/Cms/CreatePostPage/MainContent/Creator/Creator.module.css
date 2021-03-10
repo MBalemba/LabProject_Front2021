@@ -2,7 +2,7 @@
 
 
 .createwind{
-    z-index: 3;
+    z-index: 40;
     transition:all 0.5s;
     margin: 0 auto;
     font-family: "Segoe UI";
@@ -80,6 +80,7 @@
 
 .addText textarea{
     box-sizing: border-box;
+    padding: 10px;
     width: 100%;
     height: 80%;
     resize: none;

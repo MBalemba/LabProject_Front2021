@@ -11,7 +11,7 @@ class MainContent extends Component {
     constructor() {
         super();
         this.state= {
-            currentCard: null,
+            currentIndex: null,
             isDragable: true,
             editModeCard:{
                 index: null,
@@ -22,7 +22,6 @@ class MainContent extends Component {
     }
 
     editModeCard(el,index){
-        alert(index);
         this.setState({
             editModeCard:{
                 index: index,
@@ -34,7 +33,7 @@ class MainContent extends Component {
     }
 
     editCardMethodTextarea(e){
-        debugger
+
         this.setState({
             editModeCard:{
                 index: this.state.editModeCard.index,
@@ -46,7 +45,6 @@ class MainContent extends Component {
 
     closeEditModal(isEdit){
         if(isEdit){
-            debugger
             this.props.editText(this.state.editModeCard.content, this.state.editModeCard.index);
             this.setState({
                 editModeCard:{
@@ -62,7 +60,6 @@ class MainContent extends Component {
 
 
     deleteContent(index) {
-        debugger
         this.props.deleteContent(index);
     }
 
@@ -73,11 +70,11 @@ class MainContent extends Component {
                 this.props.postObj.content.map((el,index)=><div className={s.wraper}>
                     <div
                         draggable={this.state.isDragable}
-                        onDragStart={(e)=>{this.dragStart(e, el, index)}}
+                        onDragStart={(e)=>{this.dragStart(e, index)}}
                         onDragLeave={(e)=>{this.dragLeave(e)}}
                         onDragEnd={(e)=>{this.dragEnd(e)}}
                         onDragOver={(e)=>{this.dragOver(e)}}
-                        onDrop={(e)=>{this.drop(e, el)}}
+                        onDrop={(e)=>{this.drop(e, index)}}
                         className={s.card}>
                     </div>
                     {
@@ -118,11 +115,11 @@ class MainContent extends Component {
         </div>)
     }
 
-    dragStart(e, card, index) {
+    dragStart(e, index) {
 
-        console.log('dragStart: ', e.target, '\n');
+        console.log('dragStart: ', index, '\n');
         this.setState({
-            currentCard: card
+            currentIndex: index
         })
     }
 
@@ -146,12 +143,23 @@ class MainContent extends Component {
 
     }
 
-    drop(e, card) {
+    drop(e, dropIndex) {
         e.preventDefault();
-        if(e.target.className!== s.contentCard){
-            e.target.style.border = ''
+        if(dropIndex === this.state.currentIndex){
+
+        }else {
+            let arr = this.props.postObj.content.map(el => ({...el}))
+            let elem = arr.splice(this.state.currentIndex, 1);
+            console.log(arr)
+            let arr1 = arr.slice(0, dropIndex);
+            let arr2 = arr.slice(dropIndex, arr.length);
+            console.log('arr1: ', arr1)
+            console.log('arr2: ', arr2);
+            arr = new Array().concat(arr1, elem, arr2);
+            this.props.updateAllContent(arr);
         }
-        console.log('drop: ',card, '\n');
+        e.target.style.border = ''
+
     }
 
 
@@ -159,10 +167,12 @@ class MainContent extends Component {
         if(el.tag==='img'){
             return <img draggable={'false'}  className={s.contentCard +' '+ s.img} src={el.src}></img>
         } else if(el.tag==='p'){
-
             return <div className={s.contentCard+' '+s.p}> {el.src.split('\n').map(el=>{return <>{'\n'+'     '+el}</>})}
             </div>
-        } else return <></>
+        } else if(el.tag==='h'){
+            return <h2 className={s.contentCard+' '+s.h}> {el.src}
+            </h2>
+        } return <></>
     }
 
     cardButtons(el, index) {

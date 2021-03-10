@@ -2,7 +2,7 @@ import s from './Creator.module.css'
 import {connect} from "react-redux";
 import {Component} from "react";
 import React from 'react';
-import {addContent, AddText, getBase64toState} from "../../../../../redux/creatorPost-reducer";
+import {addContent, AddSubtitle, AddText, getBase64toState} from "../../../../../redux/creatorPost-reducer";
 
 
 class Creator extends Component {
@@ -11,7 +11,8 @@ class Creator extends Component {
         this.state = {
             modaldown: true,
             refFile: React.createRef(),
-            textInfo: ''
+            textInfo: '',
+            subTitleInfo: ''
         }
     }
 
@@ -27,7 +28,6 @@ class Creator extends Component {
     }
 
     addText(e) {
-        debugger
         console.log(this.state.textInfo)
         if(e.target.tagName === 'TEXTAREA' && e.type === 'change'){
             this.setState({
@@ -40,8 +40,23 @@ class Creator extends Component {
                textInfo: ''
            })
         }
-
     }
+
+    onChangeSubtitle = (e)=>{
+        if(e.target.value.length<=92){
+            this.setState({
+                subTitleInfo: e.target.value
+            })
+        }
+    }
+
+    onClickSubtitle = () => {
+        this.props.AddSubtitle(this.state.subTitleInfo);
+        this.setState({
+            subTitleInfo: '',
+        })
+    }
+
 
     render() {
         return (<>
@@ -49,11 +64,13 @@ class Creator extends Component {
                     <div className={s.left}>
 
                         <div className={s.addTitle}>
-                            <div value={'sdsd'} contentEditable={true} className={s.textarea}>
+                            <input onChange={this.onChangeSubtitle} value={this.state.subTitleInfo} contentEditable={true} className={s.textarea}>
 
-                            </div>
-                            <button>
-                                <svg id="plus" xmlns="http://www.w3.org/2000/svg" width="78.844" height="81"
+                            </input>
+
+                            <button disabled={this.state.subTitleInfo.trim()?false:true} onClick={this.onClickSubtitle}>
+                                <p>Добавить подзаголовок</p>
+                                <svg id="plus" xmlns="http://www.w3.org/2000/svg" width="38" height="38"
                                      viewBox="0 0 78.844 81">
                                     <path id="Контур_232" data-name="Контур 232"
                                           d="M165.2,245.036H130.48a2.518,2.518,0,0,1,0-5.036H165.2a2.518,2.518,0,0,1,0,5.036Zm0,0"
@@ -150,4 +167,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
 })
 
-export default connect(mapStateToProps, {addContent, getBase64toState, AddText})(Creator)
+export default connect(mapStateToProps, {addContent, getBase64toState, AddText, AddSubtitle})(Creator)

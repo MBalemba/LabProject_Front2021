@@ -1,4 +1,5 @@
 import {getBase64} from "../assets/utils/getBase64";
+import {act} from "@testing-library/react";
 
 const SET_RUBRICK = 'SET_RUBRICK'
     , SET_TYPE = 'SET_TYPE'
@@ -8,6 +9,7 @@ const SET_RUBRICK = 'SET_RUBRICK'
     , SET_TEXT = 'SET_TEXT'
     , EDIT_TEXT = 'EDIT_TEXT'
     , DELETE_CONTENT = 'DELETE_CONTENT'
+    , UPDATE_CONTENT = 'UPDATE_CONTENT';
 
 const  data = new Date();
 const arrMonth = [
@@ -77,8 +79,12 @@ const creatorPostReducer = (state = initialState, action) => {
                     (el,index) =>
                     {if(index === action.index) return {tag: 'p', src: action.text}; return el})
             }}
+        case SET_SUBTITLE:
+            return{
+                ...state,
+                postObj: {...state.postObj, content: [...state.postObj.content, {tag: 'h', src: action.subtitle}]}
+            }
         case DELETE_CONTENT:
-            debugger
             let arr = state.postObj.content.map((el)=>({...el}));
             arr.splice(action.index,1);
                 return {
@@ -87,6 +93,12 @@ const creatorPostReducer = (state = initialState, action) => {
                         ...state.postObj, content: arr,
                     }
                 }
+        case UPDATE_CONTENT:
+            debugger
+            return{
+                ...state,
+                postObj: {...state.postObj, content: [...action.content]}
+            }
         default:
             return state;
     }
@@ -144,7 +156,6 @@ export const AddText = (text) => {
 }
 
 export const editText = (text, index) => {
-    debugger
     return{
         type: EDIT_TEXT,
         index: index,
@@ -158,6 +169,13 @@ export const deleteContent = (index) => {
         index: index,
     }
 
+}
+
+export const updateAllContent = (arr) =>{
+    return{
+        type: UPDATE_CONTENT,
+        content: arr,
+    }
 }
 
 export default creatorPostReducer;

@@ -38,7 +38,8 @@
 }
 
 .addTitle{
-    background-color: #E6E9EC;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0);
     border-radius: 20px;
     height: 81px;
     display: flex;
@@ -47,7 +48,9 @@
     margin-bottom: 10px;
 }
 
-.addTitle .textarea{
+.addTitle input{
+    font-weight: bold;
+    font-size: 16px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -62,7 +65,6 @@
 .addTitle button{
     border-radius: 20px;
     padding: 0;
-    border: 0px;
     height: 81px;
 }
 
@@ -79,6 +81,8 @@
 }
 
 .addText textarea{
+    font-weight: normal;
+    font-size: 16px;
     box-sizing: border-box;
     padding: 10px;
     width: 100%;

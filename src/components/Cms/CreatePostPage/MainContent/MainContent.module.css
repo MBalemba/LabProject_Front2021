@@ -10,8 +10,8 @@
 
 .wraper{
     box-sizing: border-box;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-top: 40px;
     position: relative;
     width: 820px;
     height: auto;
@@ -30,7 +30,7 @@
     word-wrap: break-word;
 }
 .card:hover{
-    border: 5px solid #61dafb;
+    border: 2px solid #61dafb;
 }
 
 .contentCard{
@@ -54,13 +54,22 @@
     padding: 20px;
 }
 
+.contentCard.h{
+    word-wrap: break-word;
+    vertical-align: top;
+    height: auto;
+}
+
 .controlPanel{
+    width: 100%;
     border: 0px;
     display: flex;
+    justify-content: space-between;
     position: absolute;
     z-index: 3;
-    top: 0px;
+    top: -30px;
     right: 0px;
+    background-color: rgba(0,0,0,0.1);
 }
 
 
@@ -74,15 +83,15 @@
     z-index: 50;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0,0,0, 0.8);
 }
 .wrapTextArea{
     box-sizing: content-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 600px;
-    width: 320px;
+    height: 50%;
+    width: 50%;
     background-color: #707070;
 }
 

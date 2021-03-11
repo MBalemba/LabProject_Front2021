@@ -37,5 +37,10 @@
 }
 
 
-
+@font-face {
+    font-family: "CorbelBold";
+    src: url("assets/fonts/Corbel.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
 

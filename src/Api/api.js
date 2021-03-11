@@ -4,8 +4,9 @@ import * as axios from "axios";
 
 const instance1 = axios.create({
     withCredentials: true,
-    timeout: 3000,
-    baseURL: 'http://localhost:5500'
+    timeout: 10000,
+    baseURL: 'http://localhost:5500',
+
 })
 
 
@@ -15,4 +16,17 @@ export function getToken({login, password }){
 
 export function getRubrick(){
     return instance1.get('/rubrick')
+}
+
+export const editAPI= {
+
+    sendPost(obj) {
+        debugger
+    obj = {...obj};
+        return instance1.post(`/articles/${obj.type.pathName}`,{...obj},{
+            headers: {
+                'Authorization':'Bearer '+sessionStorage.getItem('key')
+            }
+        })
+    }
 }

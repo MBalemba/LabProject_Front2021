@@ -1,5 +1,6 @@
 import {getBase64} from "../assets/utils/getBase64";
 import {act} from "@testing-library/react";
+import {editAPI} from "../Api/api";
 
 const SET_RUBRICK = 'SET_RUBRICK'
     , SET_TYPE = 'SET_TYPE'
@@ -9,7 +10,9 @@ const SET_RUBRICK = 'SET_RUBRICK'
     , SET_TEXT = 'SET_TEXT'
     , EDIT_TEXT = 'EDIT_TEXT'
     , DELETE_CONTENT = 'DELETE_CONTENT'
-    , UPDATE_CONTENT = 'UPDATE_CONTENT';
+    , UPDATE_CONTENT = 'UPDATE_CONTENT'
+    , CLEAR_POST = 'CLEAR_POST'
+    ,  ADD_AVA = ' ADD_AVA';
 
 const  data = new Date();
 const arrMonth = [
@@ -27,7 +30,9 @@ const arrMonth = [
 ]
 
 const initialState = {
+    isFetching: false,
     postObj: {
+        avaImg: '',
         title: '',
         data: {
             day: data.getDate(),
@@ -67,6 +72,11 @@ const creatorPostReducer = (state = initialState, action) => {
                 ...state,
                 postObj: {...state.postObj, content: [...state.postObj.content, ...action.dataArr]}
             }
+        case ADD_AVA:
+            return {
+                ...state,
+                postObj: {...state.postObj, avaImg: action.ava}
+            }
         case SET_TEXT:
             return{
                 ...state,
@@ -99,6 +109,31 @@ const creatorPostReducer = (state = initialState, action) => {
                 ...state,
                 postObj: {...state.postObj, content: [...action.content]}
             }
+        case CLEAR_POST:
+            debugger
+            return{
+                ...state,
+                postObj: {
+                    avaImg: '',
+                    title: '',
+                    data: {
+                        day: data.getDate(),
+                        month: arrMonth[data.getMonth() - 1],
+                        year: data.getFullYear(),
+                    },
+                    type: {
+                        rusName: "Спорт",
+                        pathName: "sport",
+                    },
+                    content: [],
+                    link: [],
+                }
+            }
+        case 'changeIsFetching':
+            return {
+                ...state,
+                isFetching: !state.isFetching,
+            }
         default:
             return state;
     }
@@ -129,16 +164,26 @@ export const setTitle = (title) => {
 }
 
 export const addContent = (dataArr) => {
-    debugger
     return {
         type: ADD_CONTENT,
         dataArr: dataArr,
     }
 }
 
+export const addAva = (dataArr) => {
+    return {
+        type: ADD_AVA,
+        ava: dataArr[0].src,
+    }
+}
+
 export const getBase64toState = (e) => (dispatch) => {
-    debugger
+
     getBase64(e, dispatch, addContent);
+}
+
+export const avaThunk = (e) => (dispatch) => {
+    getBase64(e, dispatch, addAva);
 }
 
 export const AddSubtitle = (subtitle) => {
@@ -177,5 +222,29 @@ export const updateAllContent = (arr) =>{
         content: arr,
     }
 }
+
+export const clearPostPage = ()=>{
+    return{
+        type: CLEAR_POST,
+    }
+}
+
+export const ChangeIsFetching = ()=>{
+    return{
+        type: 'changeIsFetching',
+    }
+}
+
+
+export const sendData = (obj) => (dispatch) => {
+    dispatch(ChangeIsFetching())
+    editAPI.sendPost(obj).then(response=>{dispatch(clearPostPage()); debugger; dispatch(ChangeIsFetching())},
+        response=>{
+
+        dispatch(ChangeIsFetching())}
+        )
+
+}
+
 
 export default creatorPostReducer;

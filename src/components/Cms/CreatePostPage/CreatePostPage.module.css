@@ -1,86 +1,63 @@
-/*.firstPart{*/
-/*    background-color: #61dafb;*/
-/*}*/
+.preloader{
+    transition: all 1s;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/*.mainTitle{*/
-/*    font-family: "Segoe UI";*/
-/*}*/
-
-/*.mainTitle p{*/
-/*    font-size: 48px;*/
-/*}*/
-
-/*.mainTitle button{*/
-/*    border: 0px;*/
-/*}*/
-
-/*.underHead{*/
-/*    display: flex;*/
-/*    width: 320px;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    border: 1px solid #1F2024;*/
-/*    padding: 2px;*/
-/*    border-radius: 10px;*/
-/*}*/
-
-/*.time{*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
-/*.time time{*/
-/*    margin-left: 5px;*/
-/*}*/
-
-/*.rubrick{*/
-/*    position: relative;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    cursor: pointer;*/
-/*}*/
-
-
-/*.rubrick:before{*/
-/*    position: absolute;*/
-/*    content: '';*/
-/*    width: 1px;*/
-/*    background-color: #1F2024;*/
-/*    height: 27px;*/
-/*    left: -12px;*/
-/*}*/
-
-/*.rubrick p{*/
-/*    margin-right: 5px;*/
-/*}*/
-
-/*.rubrick svg{*/
-/*    width: 16px;*/
-/*}*/
-
-/*.modalRubrick{*/
-/*    position: absolute;*/
-/*    top: 40px;*/
-/*    background-color: white;*/
-/*    border-radius: 10px;*/
-/*    padding: 10px;*/
-/*    max-height: 100px;*/
-/*    overflow: auto;*/
-/*    display: grid;*/
-/*    grid-template-rows: repeat(auto-fill, 1fr);*/
-/*}*/
-/*.list{*/
-
-/*}*/
-
-/*.list.active{*/
-/*    background-color: #61dafb;*/
-/*}*/
 
 
 .bottom{
+    margin-top: 20px;
+    margin-bottom: 100px;
+    bottom: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     width: 100%;
 }
+
+.button{
+    margin-right: 20px;
+    font-size: 20px;
+    background-color: rgba(0,0,0, 0.3);
+    color: #1F2024;
+    border-radius: 10px;
+    border: 0px;
+    outline: none;
+    width:120px;
+    height: 60px;
+    transition:all 0.1s;
+}
+
+
+.button:hover{
+    border: 0px;
+    border-radius: 10px;
+    background-color: #F78306;
+}
+
+.button:active{
+    border: 2px solid #1F2024;
+    /*box-shadow: 0 0 20px 1px #61dafb;*/
+    color: #E6E9EC;
+    border-radius: 10px;
+    background-color: #F78306;
+    transform: scale(1.2,1.2);
+}
+
+.warning{
+
+    border: red;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
 

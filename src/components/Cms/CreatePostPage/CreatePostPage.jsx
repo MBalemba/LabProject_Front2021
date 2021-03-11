@@ -1,12 +1,12 @@
 import s from './CreatePostPage.module.css'
 import {connect} from "react-redux";
-import Creator from "./MainContent/Creator/Creator";
 import {Component} from "react";
-import {getRubrick} from "../../../Api/api";
+import ClipLoader from "react-spinners/ClipLoader"
+
 import {
-    AddSubtitle,
+    AddSubtitle, avaThunk,
     deleteContent,
-    editText,
+    editText, sendData,
     setRubrick,
     setTitle,
     setType,
@@ -17,31 +17,48 @@ import MainContent from "./MainContent/MainContent";
 
 
 class ServerComponent extends Component {
-    canRequest(){
-        const obj = this.props.postObj;
-        if(obj.title!=='' && obj.content.length!==0  ){
-            return true
+    constructor() {
+        super();
+        this.state = {
+            AfterRequest: true
         }
-        return false
     }
+
+    saveChange(e) {
+        this.props.sendData(this.props.postObj);
+    }
+
     render() {
+
         return (<div className={s.bottom}>
-                <button disabled={this.canRequest}>Применить изменения</button>
-        </div>
+                {(this.props.postObj.title === '' || this.props.postObj.content.length === 0 || this.props.postObj.avaImg=== '') ? '' :
+                    <button onMouseUp={() => {
+                    }} onClick={this.saveChange.bind(this)} className={s.button}>Применить изменения</button>}
+
+            </div>
 
         );
     }
-}
+};
 
 class CreatePostPage extends Component {
 
 
     render() {
+        if (this.props.creatorPost.isFetching) return (
+            <div className={s.preloader}>
+                < ClipLoader/>
+            </div>
+        )
+
         return (<>
                 <Prevue  {...this.props}/>
-                <MainContent updateAllContent={this.props.updateAllContent} deleteContent={this.props.deleteContent} editText={this.props.editText}
-                             postObj={this.props.creatorPost.postObj}/>
-                <ServerComponent postObj={this.props.creatorPost.postObj}/>
+                <MainContent updateAllContent={this.props.updateAllContent} deleteContent={this.props.deleteContent}
+                             editText={this.props.editText}
+                             postObj={this.props.creatorPost.postObj}
+
+                />
+                <ServerComponent sendData={this.props.sendData} postObj={this.props.creatorPost.postObj}/>
             </>
         )
     }
@@ -61,4 +78,7 @@ export default connect(mapStateToProps, {
     editText,
     deleteContent,
     updateAllContent,
+    sendData,
+    avaThunk,
+
 })(CreatePostPage)

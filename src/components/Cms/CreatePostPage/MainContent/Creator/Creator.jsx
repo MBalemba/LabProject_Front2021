@@ -28,7 +28,6 @@ class Creator extends Component {
     }
 
     addText(e) {
-        console.log(this.state.textInfo)
         if(e.target.tagName === 'TEXTAREA' && e.type === 'change'){
             this.setState({
                 textInfo: e.target.value

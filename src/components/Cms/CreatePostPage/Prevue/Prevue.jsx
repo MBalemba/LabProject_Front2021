@@ -2,7 +2,7 @@ import s from './Prevue.module.css'
 import {Component} from "react";
 import {getRubrick} from "../../../../Api/api";
 import React from 'react';
-import {setTitle} from "../../../../redux/creatorPost-reducer";
+import {avaThunk, setTitle} from "../../../../redux/creatorPost-reducer";
 
 
 class Prevue extends Component {
@@ -10,6 +10,7 @@ class Prevue extends Component {
     constructor() {
         super();
         this.mainRef = React.createRef();
+        this.inputRef = React.createRef()
     }
 
     componentDidMount() {
@@ -62,6 +63,13 @@ class Prevue extends Component {
         this.props.setTitle(e.currentTarget.value)
     }
 
+    openCatalog(e){
+        this.inputRef.current.click();
+    }
+    loadFile(e){
+        this.props.avaThunk(e);
+    }
+
     render() {
 
         return (
@@ -71,7 +79,7 @@ class Prevue extends Component {
                 <div className={s.mainTitle}>
                     <div style={this.state.editModeMainTitle ? {} : {display: 'none'}} className={s.edit}>
                         <input
-                            value={this.props.creatorPost.postObj.title === 'Добавьте заголовок' ? '' : this.props.creatorPost.postObj.title}
+                            value={this.props.creatorPost.postObj.title}
                             onChange={this.changeForm.bind(this)} contentEditable={true} className={s.editMainInput}
                             ref={this.mainRef} onBlur={(e) => {
                             this.props.setTitle(e.currentTarget.value.trim());
@@ -143,6 +151,17 @@ class Prevue extends Component {
                             })}
                         </div> : ''}
                     </div>
+                </div>
+                
+                <div className={s.avatarBlock}>
+                   <div className={s.wrapAva}>
+                       <input ref={this.inputRef} onChange={this.loadFile.bind(this)} type="file"/>
+                       <button onClick={this.openCatalog.bind(this)}>
+                           Выберите главное изображение
+                       </button>
+                       <img src={this.props.creatorPost.postObj.avaImg} className={s.img}/>
+                   </div>
+
                 </div>
 
             </div>

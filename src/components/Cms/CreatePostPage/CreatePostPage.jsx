@@ -16,6 +16,23 @@ import Prevue from "./Prevue/Prevue";
 import MainContent from "./MainContent/MainContent";
 
 
+class ServerComponent extends Component {
+    canRequest(){
+        const obj = this.props.postObj;
+        if(obj.title!=='' && obj.content.length!==0  ){
+            return true
+        }
+        return false
+    }
+    render() {
+        return (<div className={s.bottom}>
+                <button disabled={this.canRequest}>Применить изменения</button>
+        </div>
+
+        );
+    }
+}
+
 class CreatePostPage extends Component {
 
 
@@ -24,6 +41,7 @@ class CreatePostPage extends Component {
                 <Prevue  {...this.props}/>
                 <MainContent updateAllContent={this.props.updateAllContent} deleteContent={this.props.deleteContent} editText={this.props.editText}
                              postObj={this.props.creatorPost.postObj}/>
+                <ServerComponent postObj={this.props.creatorPost.postObj}/>
             </>
         )
     }

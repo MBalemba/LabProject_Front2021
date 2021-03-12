@@ -21,9 +21,8 @@ export function getRubrick(){
 export const editAPI= {
 
     sendPost(obj) {
-        debugger
     obj = {...obj};
-        return instance1.post(`/articles/${obj.type.pathName}`,{...obj},{
+        return instance1.post(`/Posts`,{...obj},{
             headers: {
                 'Authorization':'Bearer '+sessionStorage.getItem('key')
             }

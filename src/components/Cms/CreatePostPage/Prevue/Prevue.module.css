@@ -3,11 +3,12 @@
 }
 
 .firstPart .ph{
-    font-size: 48px;
+    font-size: 38px;
 }
 
 .mainTitle{
     font-family: "Segoe UI";
+    min-height: 170px;
 }
 
 .edit{
@@ -16,11 +17,13 @@
 }
 
 .editMainInput{
-    height: 96px;
+    min-height: 110px;
+    resize: none;
     font-size: 36px;
     border: 0px;
     border-bottom: 1px solid red;
     width: 100%;
+    margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
     background-color: rgba(0,0,0,0);
@@ -41,8 +44,13 @@
 .TitleBlock{
     width: 100%;
     display: flex;
+    align-items: flex-start;
     justify-content: flex-start;
 }
+.TitleBlock button{
+    margin-top: 38px;
+}
+
 .TitleBlock p{
     display: block;
     max-width: 100%;
@@ -50,7 +58,7 @@
 .TitleBlock h1{
     word-wrap: break-word;
     display: inline;
-    width: 100%;
+    max-width: 90%;
 }
 
 .underHead{

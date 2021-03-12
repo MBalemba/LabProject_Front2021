@@ -78,7 +78,7 @@ class Prevue extends Component {
 
                 <div className={s.mainTitle}>
                     <div style={this.state.editModeMainTitle ? {} : {display: 'none'}} className={s.edit}>
-                        <input
+                        <textarea
                             value={this.props.creatorPost.postObj.title}
                             onChange={this.changeForm.bind(this)} contentEditable={true} className={s.editMainInput}
                             ref={this.mainRef} onBlur={(e) => {
@@ -87,7 +87,7 @@ class Prevue extends Component {
                         }}
                         >
 
-                        </input>
+                        </textarea>
                         <div style={{display: "none", color: 'red', margin: '10px'}}>максимальная длина 100 символов</div>
                     </div>
 

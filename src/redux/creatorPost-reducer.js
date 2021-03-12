@@ -12,7 +12,8 @@ const SET_RUBRICK = 'SET_RUBRICK'
     , DELETE_CONTENT = 'DELETE_CONTENT'
     , UPDATE_CONTENT = 'UPDATE_CONTENT'
     , CLEAR_POST = 'CLEAR_POST'
-    ,  ADD_AVA = ' ADD_AVA';
+    ,  ADD_AVA = ' ADD_AVA'
+    ,  REQUEST_CHANGE = 'REQUEST_CHANGE';
 
 const  data = new Date();
 const arrMonth = [
@@ -30,6 +31,7 @@ const arrMonth = [
 ]
 
 const initialState = {
+    isRequest: false,
     isFetching: false,
     postObj: {
         avaImg: '',
@@ -104,15 +106,21 @@ const creatorPostReducer = (state = initialState, action) => {
                     }
                 }
         case UPDATE_CONTENT:
-            debugger
             return{
                 ...state,
                 postObj: {...state.postObj, content: [...action.content]}
             }
+        case REQUEST_CHANGE:
+            debugger;
+            return {
+                ...state,
+                isRequest: action.bool,
+            }
+
         case CLEAR_POST:
-            debugger
             return{
                 ...state,
+                isRequest: true,
                 postObj: {
                     avaImg: '',
                     title: '',
@@ -177,6 +185,13 @@ export const addAva = (dataArr) => {
     }
 }
 
+export const setRequest = (bool)=>{
+    return {
+        type: REQUEST_CHANGE,
+        bool: bool,
+    }
+}
+
 export const getBase64toState = (e) => (dispatch) => {
 
     getBase64(e, dispatch, addContent);
@@ -238,10 +253,12 @@ export const ChangeIsFetching = ()=>{
 
 export const sendData = (obj) => (dispatch) => {
     dispatch(ChangeIsFetching())
-    editAPI.sendPost(obj).then(response=>{dispatch(clearPostPage()); debugger; dispatch(ChangeIsFetching())},
+    editAPI.sendPost(obj).then(response=>{dispatch(clearPostPage()); dispatch(ChangeIsFetching())},
         response=>{
-
-        dispatch(ChangeIsFetching())}
+        debugger
+        dispatch(ChangeIsFetching());
+        dispatch(setRequest(true))
+        }
         )
 
 }

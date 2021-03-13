@@ -15,21 +15,6 @@ let Section2 = (props) => {
                         <NewContent SecondBlock={props.SecondBlock[index]}/>
                     </div>
                 })}
-                {/*<div className={s.child1}>*/}
-                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
-                {/*</div>*/}
-                {/*<div className={s.child2}>*/}
-                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
-                {/*</div>*/}
-                {/*<div className={s.child3}>*/}
-                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
-                {/*</div>*/}
-                {/*<div className={s.child4}>*/}
-                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
-                {/*</div>*/}
-                {/*<div className={s.child5}>*/}
-                {/*    <NewContent SecondBlock={props.SecondBlock}/>*/}
-                {/*</div>*/}
             </div>
         </>
     )

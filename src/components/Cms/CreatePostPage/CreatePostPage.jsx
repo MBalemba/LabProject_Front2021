@@ -3,9 +3,9 @@ import {connect} from "react-redux";
 import {Component} from "react";
 import ClipLoader from "react-spinners/ClipLoader"
 import {
-    AddSubtitle, avaThunk,
+    AddSubtitle, avaThunk, clearPostPage,
     deleteContent,
-    editText, sendData, setRequest,
+    editText, getPostsServer, putRequestServer, sendData, setRequest,
     setRubrick,
     setTitle,
     setType,
@@ -14,6 +14,8 @@ import {
 import Prevue from "./Prevue/Prevue";
 import MainContent from "./MainContent/MainContent";
 import ServerComponent from "./ServerComponent/ServerComponent";
+import {withRouter} from "react-router-dom";
+import {compose} from "redux";
 
 //
 // class ServerComponent extends Component {
@@ -53,6 +55,16 @@ import ServerComponent from "./ServerComponent/ServerComponent";
 
 class CreatePostPage extends Component {
 
+    componentWillUnmount() {
+        if(this.props.match.params.postId) this.props.clearPostPage();
+    }
+
+    componentDidMount() {
+        if(this.props.match.params.postId){
+            this.props.getPostsServer(this.props.match.params.postId)
+        }
+    }
+
 
     render() {
         if (this.props.creatorPost.isFetching) return (
@@ -68,7 +80,8 @@ class CreatePostPage extends Component {
                              postObj={this.props.creatorPost.postObj}
 
                 />
-                <ServerComponent setRequest={this.props.setRequest} sendData={this.props.sendData} isRequest = {this.props.creatorPost.isRequest} postObj={this.props.creatorPost.postObj}/>
+                <ServerComponent putRequestServer={this.props.putRequestServer} id={this.props.match.params.postId} setRequest={this.props.setRequest} sendData={this.props.sendData}
+                                 isRequest={this.props.creatorPost.isRequest} postObj={this.props.creatorPost.postObj}/>
             </>
         )
     }
@@ -81,15 +94,19 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps, {
-    setRubrick,
-    setType,
-    setTitle,
-    editText,
-    deleteContent,
-    updateAllContent,
-    sendData,
-    avaThunk,
-    setRequest
+export default compose(
+    connect(mapStateToProps, {
+        setRubrick,
+        clearPostPage,
+        setType,
+        setTitle,
+        editText,
+        deleteContent,
+        updateAllContent,
+        sendData,
+        avaThunk,
+        setRequest,
+        getPostsServer,
+        putRequestServer,
 
-})(CreatePostPage)
+    }), withRouter)(CreatePostPage)

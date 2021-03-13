@@ -12,7 +12,12 @@ class ServerComponent extends Component {
     }
 
     saveChange(e) {
-        this.props.sendData(this.props.postObj);
+        if(this.props.id){
+            this.props.putRequestServer(this.props.postObj);
+        } else{
+            this.props.sendData(this.props.postObj);
+        }
+
     }
 
     render() {
@@ -23,9 +28,6 @@ class ServerComponent extends Component {
         return (<div className={s.bottom}>
                 {(this.props.postObj.title === '' || this.props.postObj.content.length === 0 || this.props.postObj.avaImg=== '') ? '' :
                     <button onMouseDown={() => {
-                        this.setState({
-                            AfterRequest: true,
-                        })
                     }} onClick={this.saveChange.bind(this)} className={s.button}>Применить изменения</button>}
                 {this.props.isRequest === true && this.props.postObj.title !== ''?<div onClick={(e)=>{e.preventDefault()}} className={s.warning}>Ошибка отправки на сервер</div>: ''}
 

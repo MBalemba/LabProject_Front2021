@@ -1,6 +1,6 @@
 import {getBase64} from "../assets/utils/getBase64";
 import {act} from "@testing-library/react";
-import {editAPI} from "../Api/api";
+import {PostsAPI} from "../Api/api";
 
 const SET_RUBRICK = 'SET_RUBRICK'
     , SET_TYPE = 'SET_TYPE'
@@ -13,7 +13,8 @@ const SET_RUBRICK = 'SET_RUBRICK'
     , UPDATE_CONTENT = 'UPDATE_CONTENT'
     , CLEAR_POST = 'CLEAR_POST'
     ,  ADD_AVA = ' ADD_AVA'
-    ,  REQUEST_CHANGE = 'REQUEST_CHANGE';
+    ,  REQUEST_CHANGE = 'REQUEST_CHANGE',
+    LOAD_OBJ_SERVER = 'LOAD_OBJ_SERVER'
 
 const  data = new Date();
 const arrMonth = [
@@ -120,7 +121,7 @@ const creatorPostReducer = (state = initialState, action) => {
         case CLEAR_POST:
             return{
                 ...state,
-                isRequest: true,
+                isRequest: false,
                 postObj: {
                     avaImg: '',
                     title: '',
@@ -136,6 +137,11 @@ const creatorPostReducer = (state = initialState, action) => {
                     content: [],
                     link: [],
                 }
+            }
+        case LOAD_OBJ_SERVER:
+            return {
+                ...state,
+                postObj: {...action.data}
             }
         case 'changeIsFetching':
             return {
@@ -191,6 +197,7 @@ export const setRequest = (bool)=>{
         bool: bool,
     }
 }
+
 
 export const getBase64toState = (e) => (dispatch) => {
 
@@ -250,18 +257,32 @@ export const ChangeIsFetching = ()=>{
     }
 }
 
+export const updatepostObj = (data)=>{
+    return {
+        type: LOAD_OBJ_SERVER,
+        data: data
+    }
+}
+
 
 export const sendData = (obj) => (dispatch) => {
     dispatch(ChangeIsFetching())
-    editAPI.sendPost(obj).then(response=>{dispatch(clearPostPage()); dispatch(ChangeIsFetching())},
+    PostsAPI.sendPost(obj).then(response=>{debugger; dispatch(clearPostPage()); dispatch(ChangeIsFetching())},
         response=>{
         debugger
         dispatch(ChangeIsFetching());
         dispatch(setRequest(true))
         }
         )
-
 }
 
+export const getPostsServer =(id) =>(dispatch) =>{
+    PostsAPI.getOnePost(id).then(response=>{dispatch(updatepostObj(response.data))})
+}
+
+export const putRequestServer =(obj) =>(dispatch) =>{
+    PostsAPI.putRequest(obj).then(response=>{debugger},
+        response=>{debugger} )
+}
 
 export default creatorPostReducer;

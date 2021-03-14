@@ -111,7 +111,7 @@ class Creator extends Component {
 
                     <div className={s.right}>
                         <input multiple={'true'} accept=".png,.jpg,.jpeg" onChange={this.loadFile.bind(this)}  ref={this.state.refFile} style={{display: 'none'}} type="file"/>
-                        <button onClick={(e) => {
+                        <button dropzone="move" onClick={(e) => {
                             this.state.refFile.current.click();
                         }} className={s.uploadfile}>
                             <svg id="plus" xmlns="http://www.w3.org/2000/svg" width="127.5" height="127.5"

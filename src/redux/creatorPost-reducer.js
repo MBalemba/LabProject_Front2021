@@ -12,11 +12,11 @@ const SET_RUBRICK = 'SET_RUBRICK'
     , DELETE_CONTENT = 'DELETE_CONTENT'
     , UPDATE_CONTENT = 'UPDATE_CONTENT'
     , CLEAR_POST = 'CLEAR_POST'
-    ,  ADD_AVA = ' ADD_AVA'
-    ,  REQUEST_CHANGE = 'REQUEST_CHANGE',
+    , ADD_AVA = ' ADD_AVA'
+    , REQUEST_CHANGE = 'REQUEST_CHANGE',
     LOAD_OBJ_SERVER = 'LOAD_OBJ_SERVER'
 
-const  data = new Date();
+const data = new Date();
 const arrMonth = [
     'Январь',
     'Февраль',
@@ -32,7 +32,7 @@ const arrMonth = [
 ]
 
 const initialState = {
-    isRequest: false,
+    isRequest: '',
     isFetching: false,
     postObj: {
         avaImg: '',
@@ -81,33 +81,37 @@ const creatorPostReducer = (state = initialState, action) => {
                 postObj: {...state.postObj, avaImg: action.ava}
             }
         case SET_TEXT:
-            return{
+            return {
                 ...state,
                 postObj: {...state.postObj, content: [...state.postObj.content, action.text]}
             }
         case EDIT_TEXT:
-            return{
+            return {
                 ...state,
-                postObj: {...state.postObj, content: state.postObj.content.map(
-                    (el,index) =>
-                    {if(index === action.index) return {tag: 'p', src: action.text}; return el})
-            }}
+                postObj: {
+                    ...state.postObj, content: state.postObj.content.map(
+                        (el, index) => {
+                            if (index === action.index) return {tag: 'p', src: action.text};
+                            return el
+                        })
+                }
+            }
         case SET_SUBTITLE:
-            return{
+            return {
                 ...state,
                 postObj: {...state.postObj, content: [...state.postObj.content, {tag: 'h', src: action.subtitle}]}
             }
         case DELETE_CONTENT:
-            let arr = state.postObj.content.map((el)=>({...el}));
-            arr.splice(action.index,1);
-                return {
-                    ...state,
-                    postObj: {
-                        ...state.postObj, content: arr,
-                    }
+            let arr = state.postObj.content.map((el) => ({...el}));
+            arr.splice(action.index, 1);
+            return {
+                ...state,
+                postObj: {
+                    ...state.postObj, content: arr,
                 }
+            }
         case UPDATE_CONTENT:
-            return{
+            return {
                 ...state,
                 postObj: {...state.postObj, content: [...action.content]}
             }
@@ -119,9 +123,9 @@ const creatorPostReducer = (state = initialState, action) => {
             }
 
         case CLEAR_POST:
-            return{
+            return {
                 ...state,
-                isRequest: false,
+                isRequest: '',
                 postObj: {
                     avaImg: '',
                     title: '',
@@ -152,8 +156,6 @@ const creatorPostReducer = (state = initialState, action) => {
             return state;
     }
 }
-
-
 
 
 export const setRubrick = (obj) => {
@@ -191,7 +193,7 @@ export const addAva = (dataArr) => {
     }
 }
 
-export const setRequest = (bool)=>{
+export const setRequest = (bool) => {
     return {
         type: REQUEST_CHANGE,
         bool: bool,
@@ -223,7 +225,7 @@ export const AddText = (text) => {
 }
 
 export const editText = (text, index) => {
-    return{
+    return {
         type: EDIT_TEXT,
         index: index,
         text: text
@@ -231,33 +233,33 @@ export const editText = (text, index) => {
 }
 
 export const deleteContent = (index) => {
-    return{
+    return {
         type: DELETE_CONTENT,
         index: index,
     }
 
 }
 
-export const updateAllContent = (arr) =>{
-    return{
+export const updateAllContent = (arr) => {
+    return {
         type: UPDATE_CONTENT,
         content: arr,
     }
 }
 
-export const clearPostPage = ()=>{
-    return{
+export const clearPostPage = () => {
+    return {
         type: CLEAR_POST,
     }
 }
 
-export const ChangeIsFetching = ()=>{
-    return{
+export const ChangeIsFetching = () => {
+    return {
         type: 'changeIsFetching',
     }
 }
 
-export const updatepostObj = (data)=>{
+export const updatepostObj = (data) => {
     return {
         type: LOAD_OBJ_SERVER,
         data: data
@@ -266,23 +268,50 @@ export const updatepostObj = (data)=>{
 
 
 export const sendData = (obj) => (dispatch) => {
-    dispatch(ChangeIsFetching())
-    PostsAPI.sendPost(obj).then(response=>{debugger; dispatch(clearPostPage()); dispatch(ChangeIsFetching())},
-        response=>{
-        debugger
-        dispatch(ChangeIsFetching());
-        dispatch(setRequest(true))
-        }
-        )
+    dispatch(ChangeIsFetching());
+    let i =0;
+    while(i<5){
+        PostsAPI.sendPost(obj).then(response => {
+                dispatch(clearPostPage());
+                dispatch(setRequest('successful'));
+            },
+            response => {
+                debugger
+                dispatch(setRequest('error'))
+            }
+        ).finally(()=>{
+            setTimeout(()=>{dispatch(ChangeIsFetching())}, 1000)
+            setTimeout(() => {
+                dispatch(setRequest(''))
+            }, 5000)})
+        i++;
+    }
 }
 
-export const getPostsServer =(id) =>(dispatch) =>{
-    PostsAPI.getOnePost(id).then(response=>{dispatch(updatepostObj(response.data))})
+export const getPostsServer = (id) => (dispatch) => {
+    dispatch(ChangeIsFetching());
+    PostsAPI.getOnePost(id).then(response => {
+            dispatch(updatepostObj(response.data))
+        },
+        () => {
+            dispatch(setRequest('error'))
+        }).finally(()=>{
+        setTimeout(()=>{dispatch(ChangeIsFetching())}, 1000)
+    })
 }
 
-export const putRequestServer =(obj) =>(dispatch) =>{
-    PostsAPI.putRequest(obj).then(response=>{debugger},
-        response=>{debugger} )
+export const putRequestServer = (obj) => (dispatch) => {
+    dispatch(ChangeIsFetching());
+    PostsAPI.putRequest(obj).then(response => {
+            dispatch(setRequest('successful'))
+        },
+        response => {
+            dispatch(setRequest('error'))
+        }).finally(()=>{
+        setTimeout(()=>{dispatch(ChangeIsFetching())}, 1000)
+        setTimeout(() => {
+            dispatch(setRequest(''))
+        }, 5000)})
 }
 
 export default creatorPostReducer;

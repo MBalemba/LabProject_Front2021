@@ -155,7 +155,7 @@ class Prevue extends Component {
                 
                 <div className={s.avatarBlock}>
                    <div className={s.wrapAva}>
-                       <input ref={this.inputRef} onChange={this.loadFile.bind(this)} type="file"/>
+                       <input accept=".png,.jpg,.jpeg" ref={this.inputRef} onChange={this.loadFile.bind(this)} type="file"/>
                        <button onClick={this.openCatalog.bind(this)}>
                            Выберите главное изображение
                        </button>

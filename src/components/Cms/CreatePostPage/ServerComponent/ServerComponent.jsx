@@ -21,16 +21,13 @@ class ServerComponent extends Component {
     }
 
     render() {
-        console.log(this.props.isRequest);
-        if(this.props.isRequest===true){
-            setTimeout(()=>{this.props.setRequest(false)},3000)
-        }
+
         return (<div className={s.bottom}>
                 {(this.props.postObj.title === '' || this.props.postObj.content.length === 0 || this.props.postObj.avaImg=== '') ? '' :
                     <button onMouseDown={() => {
                     }} onClick={this.saveChange.bind(this)} className={s.button}>Применить изменения</button>}
-                {this.props.isRequest === true && this.props.postObj.title !== ''?<div onClick={(e)=>{e.preventDefault()}} className={s.warning}>Ошибка отправки на сервер</div>: ''}
-
+                {this.props.isRequest === 'error'?<div onClick={(e)=>{e.preventDefault()}} className={s.warning}>Ошибка отправки на сервер</div>: ''}
+                {this.props.isRequest === 'successful'?<div onClick={(e)=>{e.preventDefault()}} className={s.successful}>Изменения успешны</div>: ''}
             </div>
 
         );

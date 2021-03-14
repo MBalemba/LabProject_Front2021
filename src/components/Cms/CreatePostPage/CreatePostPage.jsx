@@ -16,42 +16,9 @@ import MainContent from "./MainContent/MainContent";
 import ServerComponent from "./ServerComponent/ServerComponent";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
+import {GridLoader} from "react-spinners";
 
-//
-// class ServerComponent extends Component {
-//     componentWillUnmount() {
-//         debugger
-//     }
-//
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             AfterRequest: false
-//         }
-//     }
-//
-//     saveChange(e) {
-//         debugger
-//
-//         this.props.sendData(this.props.postObj);
-//     }
-//
-//     render() {
-//
-//         return (<div className={s.bottom}>
-//                 {(this.props.postObj.title === '' || this.props.postObj.content.length === 0 || this.props.postObj.avaImg=== '') ? '' :
-//                     <button onMouseDown={() => {
-//                         this.setState({
-//                             AfterRequest: true,
-//                         })
-//                     }} onClick={this.saveChange.bind(this)} className={s.button}>Применить изменения</button>}
-//                 {this.state.AfterRequest === true && this.props.postObj.title != ''?<div>warn</div>: ''}
-//
-//             </div>
-//
-//         );
-//     }
-// };
+
 
 class CreatePostPage extends Component {
 
@@ -69,7 +36,7 @@ class CreatePostPage extends Component {
     render() {
         if (this.props.creatorPost.isFetching) return (
             <div className={s.preloader}>
-                < ClipLoader/>
+                <GridLoader/>
             </div>
         )
 

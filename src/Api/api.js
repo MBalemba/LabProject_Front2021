@@ -18,7 +18,7 @@ export function getRubrick(){
     return instance1.get('/rubrick')
 }
 
-export const PostsAPI= {
+export const PostsAPI = {
 
     sendPost(obj) {
     obj = {...obj};
@@ -37,6 +37,14 @@ export const PostsAPI= {
         return instance1.get(`/Posts/${id}`)
     },
 
+    deletePost(id){
+        return instance1.delete(`/Posts/${id}`,{
+            headers: {
+                'Authorization':'Bearer '+sessionStorage.getItem('key')
+            }
+        })
+    },
+
     putRequest(obj){
         debugger
         return instance1.put(`/Posts/${obj.id}`,{...obj},{
@@ -45,5 +53,7 @@ export const PostsAPI= {
             }
         })
     }
+
+
 
 }

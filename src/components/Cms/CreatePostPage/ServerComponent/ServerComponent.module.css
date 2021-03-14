@@ -57,6 +57,16 @@
     border-radius: 5px;
 }
 
+.successful{
+    position: fixed;
+    bottom:10%;
+    right: 20%;
+    z-index: 80;
+    background-color: #A3D0C3;
+    border: 1px solid cyan;
+    border-radius: 5px;
+}
+
 
 
 

@@ -1,5 +1,4 @@
 import {getBase64} from "../assets/utils/getBase64";
-import {act} from "@testing-library/react";
 import {PostsAPI} from "../Api/api";
 
 const SET_RUBRICK = 'SET_RUBRICK'

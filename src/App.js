@@ -1,24 +1,34 @@
 import './App.css';
 import Header from "./components/Header/HeaderContainer";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import Homepage from "./components/Homepage/Homepage";
-import Login from "./components/Login/Login";
+import New from "./components/New/New";
 import {Component} from "react";
 import Cms from "./components/Cms/Cms";
+import Login from "./components/Login/Login";
 
 class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <Route path='/Homepage' render={() => <>
+
+                <Route exact path='/'render={() => <Redirect to={'/homepage'} />}/>
+                <Route path='/homepage' render={() => <>
                     <Header/>
                     <div class='app-wrapper-content'>
                         <Homepage/>
                     </div>
                 </>}/>
+                <Route path='/allNews' render={() => <>
+                    <Header/>
+                    <div class='app-wrapper-content'>
+                    </div>
+                </>}/>
+
 
                 <div className='app-wrapper-content'>
-                    <Route path='/Login' render={() => <Login/>}/>
+                    <Route path='/new/:postId' render={()=><New />} />
+                    <Route path='/login' render={() => <Login />}/>
                 </div>
 
                 <Route path='/CMS' render={() => <Cms/>}/>

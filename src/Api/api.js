@@ -30,7 +30,7 @@ export const PostsAPI = {
     },
 
     getPosts(query=''){
-        return instance1.get(`/Posts/`)
+        return instance1.get(`/Posts${query}`)
     },
 
     getOnePost(id){

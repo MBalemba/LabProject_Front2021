@@ -38,6 +38,8 @@ header {
 
 .leftHeader {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
     font-family: "Corbel";
     font-weight: bold;
     font-size: 24px;
@@ -71,8 +73,11 @@ header {
 }
 
 
-.menu:hover{
+.menu.active{
     color: #1F2024;
+    margin-right: 4px;
+    box-sizing: border-box;
+    border-right: 4px solid #1F2024;
     background-color: white;
 }
 
@@ -84,7 +89,7 @@ header {
     fill: white;
 }
 
-.menu:hover svg{
+.menu.active svg{
     fill: #1F2024;
 }
 
@@ -98,14 +103,14 @@ header {
     position: absolute;
 }
 
-.menu:hover .divActive{
+.menu.active .divActive{
     position: absolute;
     height: 10px;
     width: 174px;
     background-color: #1F2024;
 }
 
-.menu:hover p{
+.menu.active p{
     color: #1F2024;
 }
 
@@ -123,10 +128,10 @@ header {
     transition-property: top;
 }
 
-.menu:hover .menuButtom{
-
+.menuButtom.active{
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     width: 100%;
     min-height: 52px;
     left: 0px;
@@ -148,14 +153,22 @@ header {
 
 .rubrik{
     margin: 10px 0;
-    max-height: 1000px;
+    max-height: 324px;
     overflow: auto;
     width: 560px;
     display: grid;
-    grid-template-rows: 44px;
+    grid-template-rows: repeat(auto-fill, 1fr);
     grid-auto-rows: 44px;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 
+}
+
+.rubrik *{
+    cursor: pointer;
+}
+
+.rubrik svg{
+    margin-left: 4px;
 }
 
 
@@ -167,6 +180,7 @@ header {
     border-radius: 20px;
     background-color: #E6E9EC;
 }
+
 
 .linkButtonHover{
     padding: 3px;
@@ -188,17 +202,24 @@ header {
 }
 
 
-.rightHeader{
+.calculator{
+    width: 674px;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+}
+.search{
+    display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }
 
 
 .input{
-    margin-right: 4px;
     padding: 0px;
     width: 583px;
+    padding-left: 10px;
     height: 51px;
     border: none;
     border-radius:10px  0 0  10px;
@@ -207,17 +228,38 @@ header {
     -moz-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
-.input:focus{
-    border: 4px solid #61dafb;
-
-}
-
-
 
 .buttonSearch{
-    border: 4px solid white;
-    border-radius: 10px;
+    background-color: white;
+    height: 51px;
+    padding-right: 4px;
 }
+
+.blockCalcButtons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.calcButton{
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1F2024;
+    height: 62px;
+    margin: 10px;
+}
+
+.calcButton.active{
+    background-color: #61dafb;
+}
+
+.calcButton:hover{
+    box-sizing: border-box;
+    border: 1px solid #61dafb;
+}
+
 
 @font-face {
     font-family: "CorbelBold";
@@ -243,7 +285,7 @@ header {
         color: white;
     }
 
-    .rightHeader{
+    .search{
         display: none;
         justify-content: center;
         align-items: center;

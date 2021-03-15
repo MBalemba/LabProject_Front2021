@@ -1,81 +1,62 @@
-const pathNewsFirstBlock = process.env.PUBLIC_URL + '/image/firstpage/block2/'
-const pathNewsSecondBlock = process.env.PUBLIC_URL + '/image/firstpage/block3/'
+import {PostsAPI} from "../Api/api"
+import defImg from './../assets/image/firstpage/default.jpg';
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const UPDATE_IS_USE = 'UPDATE_IS_USE';
+const ADD_POSTS = 'ADD_POSTS';
 
+const defaultVal = {
+    id: 'default',
+    avaImg: defImg,
+    title: "Ведутся технические работы, извините",
+    type: {
+        rusName: "default",
+        pathName: "default",
+    }
+}
 
-const initialState = {
-    Posts: {
-        sport: [
-            {
-                id: "1",
-                title: "\"Спартак\" разгромил \"Сочи\" в матче регулярного чемпионата КХЛ",
-                content: [
-                    "Хоккеисты московского \"Спартака\" на своей арене разгромили \"Сочи\" в матче регулярного чемпионата КХЛ.\n",
-                    "Игра в Москве завершилась со счетом 6:1 (1:0, 2:0, 3:1) в пользу \"красно-белых\". Дубли в составе победителей сделали Сергей Широков (17-я и 49-я минуты) и Йори Лехтеря (26, 43), еще по шайбе забросили Артем Федоров (35) и Мартин Бакош (56). У \"Сочи\" отличился Игорь Руденков (50).\n",
-                    "\"Спартак\" сохраняет шансы на выход в плей-офф - если позднее во вторник подмосковный \"Витязь\" на выезде проиграет в основное время финскому \"Йокериту\", то \"красно-белые\" станут восьмыми в Западной конференции и поборются за Кубок Гагарина.",
+    const initialState = {
+        Posts: [],
+    }
 
-                ],
-                type: 'sport',
-                data: {
-                    day: 30,
-                    month: 'March',
-                    year: '2020',
-                },
-                getSrc() {
-                    return pathNewsSecondBlock + this.id + '.jpg'
+    const mainpageReducer = (state = initialState, action) => {
+
+        switch (action.type) {
+            case ADD_POSTS:
+                return{
+                    ...state,
+                    Posts: action.arr
                 }
-            },
-            {
-                id: "2",
-                title: "\"Спартак\" разгромил \"Сочи\" в матче регулярного чемпионата КХЛ",
-                content: [
-                    "Хоккеисты московского \"Спартака\" на своей арене разгромили \"Сочи\" в матче регулярного чемпионата КХЛ.\n",
-                    "Игра в Москве завершилась со счетом 6:1 (1:0, 2:0, 3:1) в пользу \"красно-белых\". Дубли в составе победителей сделали Сергей Широков (17-я и 49-я минуты) и Йори Лехтеря (26, 43), еще по шайбе забросили Артем Федоров (35) и Мартин Бакош (56). У \"Сочи\" отличился Игорь Руденков (50).\n",
-                    "\"Спартак\" сохраняет шансы на выход в плей-офф - если позднее во вторник подмосковный \"Витязь\" на выезде проиграет в основное время финскому \"Йокериту\", то \"красно-белые\" станут восьмыми в Западной конференции и поборются за Кубок Гагарина.",
 
-                ],
-                type: 'sport',
-                data: {
-                    day: 30,
-                    month: 'April',
-                    year: '2020',
-                },
-                getSrc() {
-                    return pathNewsSecondBlock + this.id + '.jpg'
-                }
-            },
+            default:
+                return state;
+        }
 
-        ],
-        education: [],
-        tex: [],
-        tourism: [],
-        culture: [],
-        economy: [],
-        default: [
-            {
-                id: "default",
-                title: "Ведутся технические работы, извините",
-                content: ['Ведутся технические работы, извините '
-                       ],
-                type: 'default',
-                data: {
-                    day: 30,
-                    month: 'April',
-                    year: '2020',
-                },
-                getSrc() {
-                    return pathNewsSecondBlock + this.id + '.jpg'
+        return state;
+    }
+
+
+
+
+    export const thunkGetPosts = () => (dispatch) => {
+        PostsAPI.getPosts('?_page=1&_limit=5').then(response => {
+            let arr = response.data;
+            for (let i = 0; i < 5; i++) {
+                if (arr[i] === undefined) {
+                    arr.push(defaultVal)
                 }
             }
-        ]
-    },
+            dispatch(addPosts(arr))
 
-}
+        })
+    }
 
-const mainpageReducer = (state = initialState, action) => {
-    return state;
-}
+    export const addPosts =(arr) =>{
+    return {
+        type: ADD_POSTS,
+        arr: arr,
+    }
+    }
+
 
 export default mainpageReducer;

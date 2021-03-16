@@ -6,6 +6,7 @@ import New from "./components/New/New";
 import {Component} from "react";
 import Cms from "./components/Cms/Cms";
 import Login from "./components/Login/Login";
+import AllNews from "./components/AllNews/AllNews";
 
 class App extends Component {
     render() {
@@ -19,9 +20,11 @@ class App extends Component {
                         <Homepage/>
                     </div>
                 </>}/>
+
                 <Route path='/allNews' render={() => <>
                     <Header/>
                     <div class='app-wrapper-content'>
+                        <AllNews />
                     </div>
                 </>}/>
 

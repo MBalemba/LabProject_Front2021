@@ -7,6 +7,7 @@ import thunkMiddleware from "redux-thunk"
 import mainPageReducer from "./allPosts-reducer";
 import allPostsReducer from "./allPosts-reducer";
 import newReducer from "./new-reducer";
+import AllNewsReducer from "./AllNews-reducer";
 
 
 let reducers = combineReducers({
@@ -15,7 +16,8 @@ let reducers = combineReducers({
     auth: authReducer,
     creatorPost: creatorPostReducer,
     allPosts: allPostsReducer,
-    new: newReducer
+    new: newReducer,
+    AllNews: AllNewsReducer
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

@@ -1,4 +1,4 @@
-import {getRubrick} from "../Api/api";
+import {getRubrick, PostsAPI} from "../Api/api";
 
 const SET_FOLLOW = 'SET_FOLLOW';
 const GET_CATEGORY = 'GET_CATEGORY';
@@ -70,5 +70,7 @@ export const changeFollow = (obj) =>{
         obj: obj,
     }
 }
+
+
 
 export default headerReducer;

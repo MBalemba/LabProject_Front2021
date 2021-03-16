@@ -3,24 +3,22 @@ import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {changeFollow, changeOld, filterClearCategory, getCategory} from "../../redux/header-reducer";
 import {Component} from "react";
+import {allNeedPosts, firstNeedPosts} from "../../redux/AllNews-reducer";
 
 
 class HeaderContainer extends Component {
 
     componentDidMount() {
-        if(this.props.headerdata.length === 0){
+        if (this.props.headerdata.length === 0) {
             this.props.getCategory();
         }
     }
 
+
     constructor(props) {
         super(props);
-        let obj = {};
-        this.props.headerdata.forEach((el) => {
-            obj[el.pathName] = false;
-        })
         this.state = {
-            ...obj,
+
             isMenuButtom: false
         };
     }
@@ -105,36 +103,39 @@ class HeaderContainer extends Component {
                                           transform="translate(25 22) rotate(180)"/>
                                 </svg>
                             </div>
+
                             <div className={this.state.isMenuButtom ? s.menuButtom + ' ' + s.active : s.menuButtom}>
                                 <div className={s.rubrik}>
                                     {this.navElemCreator()}
                                 </div>
 
                                 <div className={s.calculator}>
-                                    {/*<div className={s.search}>*/}
-                                    {/*    <input className={s.input} type="text"/>*/}
-                                    {/*    <div className={s.buttonSearch}>*/}
-                                    {/*        <svg xmlns="http://www.w3.org/2000/svg" width="45.9" height="45.9"*/}
-                                    {/*             viewBox="0 0 45.9 45.9">*/}
-                                    {/*            <path id="Контур_208" data-name="Контур 208"*/}
-                                    {/*                  d="M45.9,41.858l-9.526-9.526a19.765,19.765,0,0,0,4.042-12.125A20.083,20.083,0,0,0,20.208,0,20.083,20.083,0,0,0,0,20.208,20.083,20.083,0,0,0,20.208,40.415a19.765,19.765,0,0,0,12.125-4.042L41.858,45.9ZM5.774,20.208A14.294,14.294,0,0,1,20.208,5.774,14.294,14.294,0,0,1,34.642,20.208,14.294,14.294,0,0,1,20.208,34.642,14.294,14.294,0,0,1,5.774,20.208Z"*/}
-                                    {/*                  fill="#2699fb"/>*/}
-                                    {/*        </svg>*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
                                     <div className={s.blockCalcButtons}>
-                                        <div onClick={(e)=>{ e.preventDefault();this.props.changeOld(true)}} className={this.props.isOld?s.calcButton+' '+s.active:s.calcButton }>
+                                        <div onClick={(e) => {
+                                            e.preventDefault();
+                                            this.props.changeOld(true)
+                                        }} className={this.props.isOld ? s.calcButton + ' ' + s.active : s.calcButton}>
                                             Сначала старые
                                         </div>
-                                        <div onClick={(e)=>{ e.preventDefault();this.props.changeOld(false)}} className={!this.props.isOld?s.calcButton+' '+s.active:s.calcButton}>
+                                        <div onClick={(e) => {
+                                            e.preventDefault();
+                                            this.props.changeOld(false)
+                                        }} className={!this.props.isOld ? s.calcButton + ' ' + s.active : s.calcButton}>
                                             Сначала новые
                                         </div>
-                                        <div onClick={(e)=>{ e.preventDefault();this.props.filterClearCategory()}} className={s.calcButton}>
-                                            Очистить
+                                        <div onClick={(e) => {
+                                            e.preventDefault();
+                                            this.props.filterClearCategory()
+                                        }} className={s.calcButton}>
+                                            Сбросить фильтр
                                         </div>
-                                        <div onClick={()=>{}} className={s.calcButton}>
+                                        <NavLink to={'/allNews'} onClick={() => {
+                                            this.props.firstNeedPosts(this.props.headerdata.filter((el) => el.isFollow === true).map(el => {
+                                                return el.pathName
+                                            }).join('&type.pathName='), this.props.isOld)
+                                        }} className={s.calcButton}>
                                             Применить фильтр
-                                        </div>
+                                        </NavLink>
 
                                     </div>
                                 </div>
@@ -161,4 +162,10 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {changeFollow, getCategory, changeOld, filterClearCategory})(HeaderContainer);
+export default connect(mapStateToProps, {
+    changeFollow,
+    getCategory,
+    changeOld,
+    filterClearCategory,
+    firstNeedPosts
+})(HeaderContainer);

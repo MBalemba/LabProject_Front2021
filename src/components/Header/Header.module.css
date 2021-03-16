@@ -241,6 +241,7 @@ header {
 }
 
 .calcButton{
+    border-radius: 20px;
     background-color: white;
     cursor: pointer;
     display: flex;

@@ -24,13 +24,14 @@
 }
 
 .createwind.down{
-    transform: translate(0px,404px);
-    -webkit-transform: translate(0px,404px);
-    -o-transform: translate(0px,404px);
-    -moz-transform: translate(0px,404px);
+    transform: translate(0px,100%);
+    -webkit-transform: translate(0px,100%);
+    -o-transform: translate(0px,100%);
+    -moz-transform: translate(0px,100%);
 }
 
 .left{
+    width: auto;
     padding: 10px;
     display: flex;
     align-items: flex-end;
@@ -57,7 +58,7 @@
     resize: none;
     border-radius: 10px 0 0 10px;
     padding: 20px;
-    width: 944px;
+    width: 100%;
     height: 75px;
     resize: none;
 }

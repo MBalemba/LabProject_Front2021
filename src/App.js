@@ -14,6 +14,8 @@ class App extends Component {
             <BrowserRouter>
 
                 <Route exact path='/'render={() => <Redirect to={'/homepage'} />}/>
+                <Route exact path='/CMS'render={() =>  <Redirect to={'/CMS/CreatePostPage'} />}/>
+
                 <Route path='/homepage' render={() => <>
                     <Header/>
                     <div class='app-wrapper-content'>

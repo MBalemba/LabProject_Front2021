@@ -228,7 +228,7 @@
 @media (max-width: 482px) {
     .newsBlock {
 
-        grid-template-columns: 341px;
+        grid-template-columns: 320px;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas:
             'small1'

@@ -128,7 +128,7 @@ class AllPosts extends Component {
 
         return <div>
 
-            <div className={s.menu + " " + s.menuActive}>
+            <div className={s.menu}>
                 <div onClick={(e) => {
                     e.currentTarget.parentNode.classList.toggle(s.menuActive)
                 }
@@ -151,10 +151,10 @@ class AllPosts extends Component {
                 <div className={s.leftPart}>
 
                     <div className={s.gridCategory}>
-                        {this.props.allPosts.category.map(el => <div onClick={() => {
+                        {this.props.allPosts.category.map(el => <div onClick={(e) => {
                             this.clickOnCategory(el.id)
                         }} className={el.isFollow ? (s.el + ' ' + s.active) : s.el}>
-                            {el.rusName}
+                            <p>{el.rusName}</p>
                         </div>)}
                     </div>
                 </div>
@@ -184,7 +184,7 @@ class AllPosts extends Component {
                                 return el.pathName
                             }).join('&type.pathName='), this.props.allPosts.params.isOld)
                         }} className={s.calcButton}>
-                            Применить фильтр
+                            <p>Применить фильтр</p>
                         </div>
 
                     </div>

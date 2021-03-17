@@ -1,7 +1,6 @@
 import s from './CreatePostPage.module.css'
 import {connect} from "react-redux";
 import {Component} from "react";
-import ClipLoader from "react-spinners/ClipLoader"
 import {
     AddSubtitle, avaThunk, clearPostPage,
     deleteContent,

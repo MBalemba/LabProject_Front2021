@@ -5,7 +5,7 @@ import {setAuth} from "../../redux/auth-reducer";
 import {compose} from "redux";
 import {NavLink, withRouter} from "react-router-dom";
 import {thunkGetPost} from "../../redux/new-reducer";
-import {firstNeedPosts, requestNextPosts} from "../../redux/AllNews-reducer";
+import {changeSearchStr, firstNeedPosts, requestNextPosts} from "../../redux/AllNews-reducer";
 import ClipLoader from "react-spinners/ClipLoader";
 
 
@@ -72,6 +72,23 @@ class AllNews extends Component {
     render() {
         return <div className={s.wrapper}>
 
+            <div className={s.d1}>
+                <input value={this.props.AllNews.params.searchStr} onChange={(e) => {
+
+                    this.props.changeSearchStr(e.currentTarget.value)
+                }} type="text" placeholder="Искать здесь..."/>
+                <button disabled={this.props.AllNews.params.searchStr.trim() === '' ? true : false} onClick={(e) => {
+                    this.props.firstNeedPosts(this.props.headerdata.filter((el) => el.isFollow === true).map(el => {
+                        return el.pathName
+                    }).join('&type.pathName='), this.props.AllNews.params.isOld, this.props.AllNews.params.searchStr)
+                }} type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70">
+                        <path id="search"
+                              d="M69.92,63.758,52.664,46.431a27.594,27.594,0,0,0,6.868-18.169C59.531,12.679,46.4,0,30.258,0S.984,12.679.984,28.262,14.116,56.525,30.258,56.525A29.68,29.68,0,0,0,47.029,51.41L64.416,68.869a3.916,3.916,0,0,0,5.4.1A3.6,3.6,0,0,0,69.92,63.758ZM30.258,7.373c11.931,0,21.637,9.371,21.637,20.89s-9.706,20.89-21.637,20.89S8.621,39.781,8.621,28.262,18.327,7.373,30.258,7.373Z"
+                              transform="translate(-0.984)"/>
+                    </svg>
+                </button>
+            </div>
 
             <div className={s.newsBlock}>
                 <PostCreator {...this.props}/>
@@ -102,11 +119,12 @@ class AllNews extends Component {
 
 let mapStateToProps = (state) => {
     return {
+        headerdata: state.header.category,
         AllNews: state.AllNews,
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {setAuth, thunkGetPost, requestNextPosts, firstNeedPosts}),
+    connect(mapStateToProps, {setAuth, thunkGetPost, requestNextPosts, firstNeedPosts, changeSearchStr}),
     withRouter
 )(AllNews);

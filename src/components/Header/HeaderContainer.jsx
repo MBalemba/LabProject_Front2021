@@ -34,7 +34,7 @@ class HeaderContainer extends Component {
 
     navElemCreator() {
         const arr = this.props.headerdata.map((el) => {
-            return <div>
+            return <div className={s.wrapperButtons}>
 
                 <div onClick={() => {
                     this.clicknav(el)

@@ -33,7 +33,10 @@
 }
 
 @media (max-width: 482px) {
-
+    .app-wrapper-content{
+        max-width: 320px;
+        margin:0 auto;
+    }
 }
 
 

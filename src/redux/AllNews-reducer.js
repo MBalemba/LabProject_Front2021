@@ -6,13 +6,15 @@ const ADD_FIRST_POSTS = 'ADD_FIRST_POSTS',
     RESET_QUANTITY_REQUEST = 'RESET_QUANTITY_REQUEST',
     PAGE_QUANTITY = 'PAGE_QUANTITY',
     QUERY_CHANGE = 'QUERY_CHANGE',
-    CHANGE_FETCHING = 'CHANGE_FETCHING';
+    CHANGE_FETCHING = 'CHANGE_FETCHING',
+    CHANGE_SEARCHSTRL = 'CHANGE_SEARCHSTRL';
 
 const initialState = {
     isFetchingPosts: false,
     params: {
+        searchStr: '',
         query: '',
-        isOld: null,
+        isOld: false,
     },
     limit: 4,
     quantityRequest: 0,
@@ -57,8 +59,21 @@ const AllNewsReducer = (state = initialState, action) => {
                 ...state,
                 isFetchingPosts: !state.isFetchingPosts
             }
+        case CHANGE_SEARCHSTRL:
+            return{
+                    ...state,
+                    params: {...state.params, searchStr: action.str}
+            }
         default:
             return state;
+    }
+}
+
+
+export const changeSearchStr = (str) => {
+    return{
+        type: CHANGE_SEARCHSTRL,
+        str: str
     }
 }
 
@@ -82,10 +97,10 @@ export const addNextPost = (arr)=>{
     }
 }
 
-export const  paramsChange= (query, isOld) => {
+export const  paramsChange= (query, isOld, searchStr) => {
     return {
         type: QUERY_CHANGE,
-        params: {query, isOld}
+        params: {query, isOld, searchStr}
     }
 }
 export const setPageQuantity = (numb) => {
@@ -101,10 +116,10 @@ export const setPageQuantity = (numb) => {
      }
 }
 
-export const firstNeedPosts = (query, isOld=false,) =>(dispatch)=>{
-    dispatch(paramsChange(query, isOld));
+export const firstNeedPosts = (query, isOld=false, searchStr='') =>(dispatch)=>{
+    dispatch(paramsChange(query, isOld, searchStr));
     dispatch(changeFetching());
-    PostsAPI.getPosts(getQuery(query, isOld,1,initialState.limit)).then(response=>{
+    PostsAPI.getPosts(getQuery(query, isOld,1,initialState.limit, searchStr)).then(response=>{
         dispatch(changeFetching());
         let pageQuantity = Math.ceil(response.headers['x-total-count']/initialState.limit);
         dispatch(setPageQuantity(pageQuantity))
@@ -114,7 +129,7 @@ export const firstNeedPosts = (query, isOld=false,) =>(dispatch)=>{
 
 export const requestNextPosts =(params, quantityRequest)=> (dispatch)=>{
     dispatch(changeFetching());
-    PostsAPI.getPosts(getQuery(params.query, params.isOld,quantityRequest+1, initialState.limit)).then(response=>{
+    PostsAPI.getPosts(getQuery(params.query, params.isOld,quantityRequest+1, initialState.limit, params.searchStr)).then(response=>{
         dispatch(addNextPost(response.data));
         dispatch(changeFetching());
     });

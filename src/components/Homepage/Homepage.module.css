@@ -82,9 +82,9 @@
 }
 
 @media (max-width: 482px) {
-    .container {
+    .sec {
         width: 100%;
-        max-width: 320px;
+        background-color: rgba(230, 230, 230, 0);
     }
 }
 

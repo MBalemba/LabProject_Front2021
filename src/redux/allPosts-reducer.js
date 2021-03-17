@@ -170,7 +170,6 @@ export const firstNeedPosts = (query, isOld=false, searchStr='') =>(dispatch)=>{
     debugger;
     dispatch(paramsChange(query, isOld, searchStr));
     PostsAPI.getPosts(getQuery(query, isOld,1,initialState.limit, searchStr)).then(response=>{
-        debugger;
         let pageQuantity = Math.ceil(response.headers['x-total-count']/initialState.limit);
         dispatch(setPageQuantity(pageQuantity))
         dispatch(addFirstPosts(response.data))
@@ -180,7 +179,6 @@ export const firstNeedPosts = (query, isOld=false, searchStr='') =>(dispatch)=>{
 export const requestNextPosts =(params, quantityRequest)=> (dispatch)=>{
 
     PostsAPI.getPosts(getQuery(params.query, params.isOld,quantityRequest+1, initialState.limit, params.searchStr)).then(response=>{
-        debugger
         dispatch(addUsers(response.data));
     });
 }

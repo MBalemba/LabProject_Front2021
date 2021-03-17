@@ -1,12 +1,18 @@
 import s from './Cms.module.css'
 import {connect} from "react-redux";
-import {NavLink, Route} from "react-router-dom";
+import {NavLink, Redirect, Route} from "react-router-dom";
 import Aside from "./Aside/Aside";
 import AllPosts from "./AllPosts/AllPosts";
 import CreatePostPage from "./CreatePostPage/CreatePostPage";
 
 
-const Cms = () => {
+const Cms = (props) => {
+
+    if(props.isAuth===false){
+        return <Redirect to={'/login'} />
+    }
+
+
     return (<div    className={s.backgr}>
             <Aside />
             <div className={s.container}>

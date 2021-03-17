@@ -75,9 +75,7 @@ header {
 
 .menu.active{
     color: #1F2024;
-    margin-right: 4px;
     box-sizing: border-box;
-    border-right: 4px solid #1F2024;
     background-color: white;
 }
 
@@ -137,11 +135,9 @@ header {
     left: 0px;
     top: 70px;
     border-radius: 0 0 10px 10px;
-    margin-left: -4px ;
     padding: 0px 4px 4px;
     position: absolute;
     background-color: rgba(255, 255, 255, 0.8);
-    border: 4px solid #1F2024;
     border-top: 0px solid white;
     -webkit-transition-duration: 1s;
     -o-transition-duration: 1s;
@@ -298,6 +294,13 @@ header {
         width: 100%;
         max-width: 724px;
     }
+        .menuButtom.active{
+            align-items: stretch;
+        }
+
+        .blockCalcButtons{
+            display: block;
+        }
 
 
 
@@ -308,6 +311,7 @@ header {
     .container {
         width: 100%;
     }
+
     .leftHeader {
         display: flex;
         justify-content: space-around;
@@ -317,11 +321,43 @@ header {
         font-size: 24px;
         color: white;
     }
-}
+    .menuButtom.active{
 
-@media (max-width: 482px) {
-    .container {
-        width: 100%;
-        max-width: 100%;
     }
 }
+
+
+
+@media (max-width: 537px) {
+    header p,a{
+        font-size: 16px;
+    }
+    .menu{
+        justify-content: flex-end;
+    }
+    .mainLink{
+        margin-right: 0px;
+        margin-left: 4px;
+    }
+    .divActive{
+        display: none;
+    }
+
+    .menuButtom.active{
+        flex-direction: column;
+        right: 0px;
+    }
+
+    .rubrik{
+        width: 100%;
+        max-height: 132px;
+    }
+    .wrapperButtons{
+        display: flex;
+        justify-content: center;
+    }
+    .calculator{
+        width: 100%;
+    }
+}
+

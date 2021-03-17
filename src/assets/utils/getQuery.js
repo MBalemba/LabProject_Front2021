@@ -1,6 +1,6 @@
 
 
-export const getQuery = function (category, isOld, isPage=1, limit=10){
+export const getQuery = function (category, isOld, isPage=1, limit=10, searchStr=''){
     let str = category;
 
     if(str.length===0){
@@ -10,8 +10,9 @@ export const getQuery = function (category, isOld, isPage=1, limit=10){
     }
     str = str + `&_page=${isPage}&_limit=${limit}`; //pagination
 
-    const a = isOld?'&_order=desc':'&_order=asc';
+    const a = isOld?'&_order=asc':'&_order=desc';
     str = str + a;//определяется порядок
 
+    str= str+ '&q='+searchStr;
     return str
 }

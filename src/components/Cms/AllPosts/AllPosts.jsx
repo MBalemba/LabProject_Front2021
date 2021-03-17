@@ -4,8 +4,8 @@ import {Component} from "react";
 import {NavLink, withRouter} from "react-router-dom";
 import {
     AddElDeletedList,
-    ChangeFollow,
-    ClearAllPosts, thunkDeleteSelectedPosts,
+    ChangeFollow, changeOld, changeSearchStr,
+    ClearAllPosts, filterClearCategory, firstNeedPosts, requestNextPosts, thunkDeleteSelectedPosts,
     thunkGetCategory,
     thunkGetUsers
 } from "../../../redux/allPosts-reducer";
@@ -19,14 +19,12 @@ class PostCreator extends Component {
 
     render() {
         return <>
-            {this.props.allPosts.posts.length !== 0 ?
-                this.props.allPosts.posts.map((el) => {
+            {this.props.allPosts.Posts.length !== 0 ?
+                this.props.allPosts.Posts.map((el) => {
                     return <div
                         style={this.props.allPosts.activateToDeleted[el.id] === undefined || this.props.allPosts.activateToDeleted[el.id] === false ? {} : {border: '4px solid #F78306'}}
                         onClick={(e) => {
-                                if(e.altKey){
-                                    this.props.AddElDeletedList(el.id);
-                                }
+                            this.props.AddElDeletedList(el.id);
                         }}
 
                         className={s.card}>
@@ -37,10 +35,12 @@ class PostCreator extends Component {
                             <img draggable={false} src={el.avaImg} alt=""/>
                         </div>
                         <div className={s.content}>
-                            <NavLink onClick={(e)=>{if(e.currentTarget.tagName==='A' && e.altKey){
-                                console.log(e.target)
-                                e.preventDefault();
-                            }}} to={`/new/${el.id}`}><h2>{el.title}</h2></NavLink>
+                            <NavLink onClick={(e) => {
+                                if (e.currentTarget.tagName === 'A' && e.altKey) {
+                                    console.log(e.target)
+                                    e.preventDefault();
+                                }
+                            }} to={`/new/${el.id}`}><h2>{el.title}</h2></NavLink>
                             <div className={s.also}>
                                 <div className={s.time}>
                                     <svg id="clock_hour_minute_second_time_timer_watch_icon_123193"
@@ -61,10 +61,12 @@ class PostCreator extends Component {
                                     <time>{el.data.day + ' ' + el.data.month + ' ' + el.data.year}</time>
                                 </div>
 
-                                <NavLink  onClick={(e)=>{if(e.currentTarget.tagName==='A' && e.altKey){
-                                    console.log(e.target)
-                                    e.preventDefault();
-                                }}} to={'/CMS/CreatePostPage/' + el.id}>
+                                <NavLink onClick={(e) => {
+                                    if (e.currentTarget.tagName === 'A' && e.altKey) {
+                                        console.log(e.target)
+                                        e.preventDefault();
+                                    }
+                                }} to={'/CMS/CreatePostPage/' + el.id}>
                                     <button>
                                         <svg id="edit" xmlns="http://www.w3.org/2000/svg" width="25.77" height="25.64"
                                              viewBox="0 0 25.77 25.64">
@@ -100,8 +102,10 @@ class AllPosts extends Component {
 
 
     componentDidMount() {
-        if (this.props.allPosts.posts.length === 0) {
-            this.props.thunkGetUsers();
+        if (this.props.allPosts.Posts.length === 0) {
+            this.props.firstNeedPosts(this.props.allPosts.category.filter((el) => el.isFollow === true).map(el => {
+                return el.pathName
+            }).join('&type.pathName='), this.props.allPosts.params.isOld);
         }
         if (this.props.allPosts.category.length === 0) {
             this.props.thunkGetCategory();
@@ -113,38 +117,119 @@ class AllPosts extends Component {
     }
 
 
-
     render() {
-        if(this.props.allPosts.isFetching){
+        console.log(this.props.allPosts.params)
+        if (this.props.allPosts.isFetching) {
             debugger
             return <div className={s.preloader}>
-                <GridLoader />
+                <GridLoader/>
             </div>
         }
 
         return <div>
 
-            <div className={s.menu}>
-                <div className={s.d1}>
-                    <input type="text" placeholder="Искать здесь..."/>
-                    <button type="submit"></button>
+            <div className={s.menu + " " + s.menuActive}>
+                <div onClick={(e) => {
+                    e.currentTarget.parentNode.classList.toggle(s.menuActive)
+                }
+                } className={s.modal}>
+                    <svg id="setting" xmlns="http://www.w3.org/2000/svg" width="82.384" height="75.519"
+                         viewBox="0 0 82.384 75.519">
+                        <path id="Контур_242" data-name="Контур 242"
+                              d="M274.632,42.668H241.387a23.726,23.726,0,0,1,0,20.6h33.245a10.3,10.3,0,1,0,0-20.6Zm0,0"
+                              transform="translate(-202.546 -35.802)"/>
+                        <path id="Контур_243" data-name="Контур 243"
+                              d="M34.326,17.164A17.163,17.163,0,1,1,17.164,0,17.163,17.163,0,0,1,34.326,17.164Zm0,0"/>
+                        <path id="Контур_244" data-name="Контур 244"
+                              d="M41.192,308.966a23.811,23.811,0,0,1,2.351-10.3H10.3a10.3,10.3,0,1,0,0,20.6H43.544A23.814,23.814,0,0,1,41.192,308.966Zm0,0"
+                              transform="translate(0 -250.61)"/>
+                        <path id="Контур_245" data-name="Контур 245"
+                              d="M332.994,273.164A17.163,17.163,0,1,1,315.831,256,17.163,17.163,0,0,1,332.994,273.164Zm0,0"
+                              transform="translate(-250.61 -214.808)"/>
+                    </svg>
+                </div>
+                <div className={s.leftPart}>
+
+                    <div className={s.gridCategory}>
+                        {this.props.allPosts.category.map(el => <div onClick={() => {
+                            this.clickOnCategory(el.id)
+                        }} className={el.isFollow ? (s.el + ' ' + s.active) : s.el}>
+                            {el.rusName}
+                        </div>)}
+                    </div>
                 </div>
 
-                <div className={s.gridCategori}>
-                    {this.props.allPosts.category.map(el => <div onClick={() => {
-                        this.clickOnCategory(el.id)
-                    }} className={el.isFollow ? (s.el + ' ' + s.active) : s.el}>
-                        {el.rusName}
-                    </div>)}
+                <div className={s.calculator}>
+                    <div className={s.blockCalcButtons}>
+                        <div onClick={(e) => {
+                            e.preventDefault();
+                            this.props.changeOld(true)
+                        }} className={this.props.allPosts.params.isOld ? s.calcButton + ' ' + s.active : s.calcButton}>
+                            Сначала старые
+                        </div>
+                        <div onClick={(e) => {
+                            e.preventDefault();
+                            this.props.changeOld(false)
+                        }} className={!this.props.allPosts.params.isOld ? s.calcButton + ' ' + s.active : s.calcButton}>
+                            Сначала новые
+                        </div>
+                        <div onClick={(e) => {
+                            e.preventDefault();
+                            this.props.filterClearCategory()
+                        }} className={s.calcButton}>
+                            Сбросить фильтр
+                        </div>
+                        <div to={'/allNews'} onClick={() => {
+                            this.props.firstNeedPosts(this.props.allPosts.category.filter((el) => el.isFollow === true).map(el => {
+                                return el.pathName
+                            }).join('&type.pathName='), this.props.allPosts.params.isOld)
+                        }} className={s.calcButton}>
+                            Применить фильтр
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
-            {this.isButtonDraw() .length!==0?<div className={s.topMenu}>
-                <a onClick={(e)=>{this.Delete(e,this.isButtonDraw())}} className={s.knopka}>УДАЛИТЬ</a>
-            </div>: ''}
+
+            {this.isButtonDraw().length !== 0 ? <div className={s.topMenu}>
+                <a onClick={(e) => {
+                    this.Delete(e, this.isButtonDraw())
+                }} className={s.knopka}>УДАЛИТЬ</a>
+            </div> : ''}
+
+            <div className={s.d1}>
+                <input value={this.props.allPosts.params.searchStr} onChange={(e) => {
+
+                    this.props.changeSearchStr(e.currentTarget.value)
+                }} type="text" placeholder="Искать здесь..."/>
+                <button disabled={this.props.allPosts.params.searchStr.trim() === '' ? true : false} onClick={(e) => {
+                    this.props.firstNeedPosts(this.props.allPosts.category.filter((el) => el.isFollow === true).map(el => {
+                        return el.pathName
+                    }).join('&type.pathName='), this.props.allPosts.params.isOld, this.props.allPosts.params.searchStr)
+                }} type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70">
+                        <path id="search"
+                              d="M69.92,63.758,52.664,46.431a27.594,27.594,0,0,0,6.868-18.169C59.531,12.679,46.4,0,30.258,0S.984,12.679.984,28.262,14.116,56.525,30.258,56.525A29.68,29.68,0,0,0,47.029,51.41L64.416,68.869a3.916,3.916,0,0,0,5.4.1A3.6,3.6,0,0,0,69.92,63.758ZM30.258,7.373c11.931,0,21.637,9.371,21.637,20.89s-9.706,20.89-21.637,20.89S8.621,39.781,8.621,28.262,18.327,7.373,30.258,7.373Z"
+                              transform="translate(-0.984)"/>
+                    </svg>
+                </button>
+            </div>
 
             <div className={s.newsBlock}>
                 <PostCreator  {...this.props}/>
             </div>
+
+
+            {this.props.allPosts.quantityRequest < this.props.allPosts.pageQuantity ?
+                <div className={s.wrapperButton}>
+                    <a onClick={(e) => {
+                        if (!this.props.allPosts.isFetchingPosts) {
+                            this.props.requestNextPosts(this.props.allPosts.params, this.props.allPosts.quantityRequest)
+                        }
+                    }} className={s.knopka}>Показать еще</a>
+                </div> : (this.props.allPosts.Posts.length === 0 ? <h1>Ничего не найдено</h1> : '')}
+
         </div>
 
     }
@@ -158,7 +243,6 @@ class AllPosts extends Component {
         }
         return arr
     }
-
 
 
     Delete(e, arr) {
@@ -179,5 +263,17 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {thunkGetUsers, thunkGetCategory, ClearAllPosts, ChangeFollow, AddElDeletedList, thunkDeleteSelectedPosts}),
+    connect(mapStateToProps, {
+        thunkGetUsers,
+        thunkGetCategory,
+        ClearAllPosts,
+        ChangeFollow,
+        AddElDeletedList,
+        thunkDeleteSelectedPosts,
+        changeOld,
+        firstNeedPosts,
+        requestNextPosts,
+        filterClearCategory,
+        changeSearchStr,
+    }),
 )(AllPosts)

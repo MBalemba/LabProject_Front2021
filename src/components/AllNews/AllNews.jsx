@@ -71,11 +71,7 @@ class AllNews extends Component {
 
     render() {
         return <div className={s.wrapper}>
-            <div className={s.title}>
-                <h1>
-                    Выбранные новости
-                </h1>
-            </div>
+
 
             <div className={s.newsBlock}>
                 <PostCreator {...this.props}/>
@@ -86,9 +82,18 @@ class AllNews extends Component {
             </div> :''}
 
 
-            {this.props.AllNews.quantityRequest!==this.props.AllNews.pageQuantity ?<div className={s.wrapperButton}>
-                <a onClick={(e)=>{if(!this.props.AllNews.isFetchingPosts){this.props.requestNextPosts(this.props.AllNews.params,this.props.AllNews.quantityRequest)}}} className={s.knopka}>Показать еще</a>
-            </div>: ''}
+            {this.props.AllNews.quantityRequest < this.props.AllNews.pageQuantity ?
+                <div className={s.wrapperButton}>
+                    <a onClick={(e) => {
+                        if (!this.props.AllNews.isFetchingPosts) {
+                            this.props.requestNextPosts(this.props.AllNews.params, this.props.AllNews.quantityRequest)
+                        }
+                    }} className={s.knopka}>Показать еще</a>
+                </div> : (this.props.AllNews.Posts.length === 0?<div className={s.title}>
+                    <h1>
+                        Ничего не найдено
+                    </h1>
+                </div> : '')}
 
         </div>
     }

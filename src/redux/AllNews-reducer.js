@@ -51,7 +51,6 @@ const AllNewsReducer = (state = initialState, action) => {
             return{
                 ...state,
                 pageQuantity: action.numb
-
             }
         case CHANGE_FETCHING:
             return{

@@ -268,8 +268,6 @@ export const updatepostObj = (data) => {
 
 export const sendData = (obj) => (dispatch) => {
     dispatch(ChangeIsFetching());
-    let i =0;
-    while(i<5){
         PostsAPI.sendPost(obj).then(response => {
                 dispatch(clearPostPage());
                 dispatch(setRequest('successful'));
@@ -283,8 +281,7 @@ export const sendData = (obj) => (dispatch) => {
             setTimeout(() => {
                 dispatch(setRequest(''))
             }, 5000)})
-        i++;
-    }
+
 }
 
 export const getPostsServer = (id) => (dispatch) => {

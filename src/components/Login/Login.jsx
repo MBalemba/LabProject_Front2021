@@ -69,10 +69,7 @@ class Login extends Component {
     }
 
     render() {
-
         if (this.props.isAuth){
-            debugger
-           console.log( sessionStorage.getItem('isAuth' ) === null);
             return <Redirect to="/CMS"/>
         }
         return (

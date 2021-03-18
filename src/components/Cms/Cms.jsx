@@ -9,7 +9,7 @@ import CreatePostPage from "./CreatePostPage/CreatePostPage";
 const Cms = (props) => {
 
     if(props.isAuth===false){
-        return <Redirect to={'/login'} />
+        return <Redirect to={'/homepage'} />
     }
 
 

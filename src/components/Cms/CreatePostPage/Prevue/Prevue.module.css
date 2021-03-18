@@ -160,6 +160,7 @@
 
 @media (max-width: 482px) {
     .underHead{
-        width: 80%;
+        width: 90%;
+        margin-left: 3px;
     }
 }

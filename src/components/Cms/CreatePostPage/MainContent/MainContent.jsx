@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import s from './MainContent.module.css'
 import Creator from "./Creator/Creator";
-import * as url from "url";
-import {editText} from "../../../../redux/creatorPost-reducer";
 
 class MainContent extends Component {
 
@@ -117,14 +115,14 @@ class MainContent extends Component {
 
     dragStart(e, index) {
 
-        console.log('dragStart: ', index, '\n');
+
         this.setState({
             currentIndex: index
         })
     }
 
     dragEnd(e) {
-        console.log('dragEnd: ', e.target, '\n');
+
     }
 
     dragLeave(e){
@@ -136,7 +134,6 @@ class MainContent extends Component {
 
     dragOver(e) {
         e.preventDefault()
-        // console.log('dragOver: ', e.target, '\n');
         if(e.target.className!== s.contentCard){
             e.target.style.border = '5px solid  #F78306'
         }
@@ -150,11 +147,8 @@ class MainContent extends Component {
         }else {
             let arr = this.props.postObj.content.map(el => ({...el}))
             let elem = arr.splice(this.state.currentIndex, 1);
-            console.log(arr)
             let arr1 = arr.slice(0, dropIndex);
             let arr2 = arr.slice(dropIndex, arr.length);
-            console.log('arr1: ', arr1)
-            console.log('arr2: ', arr2);
             arr = new Array().concat(arr1, elem, arr2);
             this.props.updateAllContent(arr);
         }

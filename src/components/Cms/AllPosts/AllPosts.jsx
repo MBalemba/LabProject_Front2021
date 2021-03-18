@@ -112,7 +112,6 @@ class AllPosts extends Component {
 
 
     render() {
-        console.log(this.props.allPosts.params)
         if (this.props.allPosts.isFetching) {
             debugger
             return <div className={s.preloader}>

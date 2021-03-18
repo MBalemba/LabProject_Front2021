@@ -20,7 +20,6 @@ let Section2 = (props) => {
 }
 
 const NewContent = (props) => {
-    console.log(props)
     return (
         <div className={s.Blockingrid}>
 

@@ -21,7 +21,6 @@ class Homepage extends Component {
                 </div>
             )
         }
-        console.log(this.props);
         return (
             <main className={s.container}>
                 <section className={s.sec}>

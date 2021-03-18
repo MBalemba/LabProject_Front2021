@@ -17,7 +17,6 @@ class New extends Component {
     }
 
     render() {
-    console.log(this.props)
 
         if(Object.keys(this.props.postData).length===0){
             return (

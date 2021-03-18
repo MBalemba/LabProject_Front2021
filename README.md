@@ -32,34 +32,48 @@
 ## Демонстрация работы новостного портала
 
 ### _**Основная страница приложения**_
->![image](https://user-images.githubusercontent.com/68498352/111598816-a83e2080-87e0-11eb-9080-0b7e996c44ff.png)
+>![image](https://user-images.githubusercontent.com/68498352/111686781-8a050e80-883a-11eb-8663-e45ea2e7685e.png)
+
 
 ### **_Страница с новостью_**  
->![image](https://user-images.githubusercontent.com/68498352/111598865-b55b0f80-87e0-11eb-86b2-cbb85681377e.png)
+>![image](https://user-images.githubusercontent.com/68498352/111686865-a4d78300-883a-11eb-944f-55a89c8ff50c.png)
+
 Выпадающее меню реализованно для выбора интересующей категории, не выбирая не одну из категорий и применяя фильтр будет осущевствлен просмотр по всем категориям. 
->![image](https://user-images.githubusercontent.com/68498352/111595822-9313c280-87dd-11eb-84bc-d59b750ba527.png)
+>![image](https://user-images.githubusercontent.com/68498352/111686968-c9335f80-883a-11eb-83f3-920d229156d6.png)
+
 
 ### Страница всех новостей
 Данная страница открывается после применения фильтра, есть возможность поиска записи, поиск работает только на те категории, которые вы выбрали в выпадающем меню
->![image](https://user-images.githubusercontent.com/68498352/111598996-dc194600-87e0-11eb-9a90-cf4f5d205546.png)
+>![image](https://user-images.githubusercontent.com/68498352/111687081-eec06900-883a-11eb-9726-5f2ae231481e.png)
+
 ---
 ### **_Страница логинизации_**
 Для перехода на эту страницу введите в адресной строке вашего браузера [http://localhost:3000/login](http://localhost:3000/login)
->![image](https://user-images.githubusercontent.com/68498352/111599178-0ff46b80-87e1-11eb-8405-8e43dfc22961.png)
+>![image](https://user-images.githubusercontent.com/68498352/111687595-7e661780-883b-11eb-8a1e-b0eb5181f6c5.png)
 
->![image](https://user-images.githubusercontent.com/68498352/111599302-31555780-87e1-11eb-9045-a3919d6253ea.png)
 
->![image](https://user-images.githubusercontent.com/68498352/111599454-55b13400-87e1-11eb-80e9-d0243a41ed9b.png)
+>![image](https://user-images.githubusercontent.com/68498352/111687651-93db4180-883b-11eb-8531-95fdb8414caa.png)
 
->![image](https://user-images.githubusercontent.com/68498352/111599531-69f53100-87e1-11eb-988f-8dd389bbfc2d.png)
+
 
 ### **_Страница создания записи_**
 Открывается сразу после успешной логинизации, страница предназначена для создания записей и редактирования уже сущевствующих, при попытке перехода на адрес сраницы неавторизованными пользователями произойдет редирект на главную страницу.
->![image](https://user-images.githubusercontent.com/68498352/111599637-8ee9a400-87e1-11eb-8586-b6d9cc2dde40.png)
+>![image](https://user-images.githubusercontent.com/68498352/111689023-8f635880-883c-11eb-8513-bb9976aa3e0d.png)
+>![image](https://user-images.githubusercontent.com/68498352/111689307-ebc67800-883c-11eb-8064-c6221297084d.png)
+>![image](https://user-images.githubusercontent.com/68498352/111689649-5972a400-883d-11eb-8c38-f11c8b5aa117.png)
+>![image](https://user-images.githubusercontent.com/68498352/111689777-845cf800-883d-11eb-97b7-1d6e28b74108.png)
+>![image](https://user-images.githubusercontent.com/68498352/111689946-ac4c5b80-883d-11eb-852d-0a227b9c7610.png)
+>![image](https://user-images.githubusercontent.com/68498352/111690034-c71ed000-883d-11eb-8a58-64cb9d4d161c.png)
+
+
+
 
 ### **_Страница для просмотра всех записей администратором_**
 Включает возможность удаления карточек, их редактирования, просмотра содержимого новости, так же доступна функция поиска интересующей карточки и фильтрации
->![image](https://user-images.githubusercontent.com/68498352/111600241-44b4f280-87e2-11eb-94d5-e2468fbfb4af.png)
+>![image](https://user-images.githubusercontent.com/68498352/111690141-e3227180-883d-11eb-92c7-15c62682b149.png)
+![image](https://user-images.githubusercontent.com/68498352/111690561-66dc5e00-883e-11eb-8e66-988056de63e9.png)
+
+
  
 
 

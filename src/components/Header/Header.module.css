@@ -1,6 +1,6 @@
 
 body{
-    background-image: url("../../assets/image/background/dooodlesbludark.png");
+    background-color: snow;
 }
 
 
@@ -53,12 +53,17 @@ header {
     margin-right: 43px;
 }
 
+.mainLink a:hover{
+    color: #61dafb;
+}
+
 .mainLink a {
     display: inline;
 }
 
 
 .menu {
+    cursor: pointer;
     display: flex;
     position: static;
     align-items: center;
@@ -76,7 +81,7 @@ header {
 .menu.active{
     color: #1F2024;
     box-sizing: border-box;
-    background-color: white;
+    background-color: rgba(255,255,255,0.7);
 }
 
 .menu svg{
@@ -85,6 +90,16 @@ header {
     -moz-transition-duration: 1s;
     transition-duration: 1s;
     fill: white;
+}
+
+
+
+.menu:hover {
+    color: #61dafb;
+}
+
+.menu:hover svg{
+    fill: #61dafb;
 }
 
 .menu.active svg{
@@ -137,7 +152,7 @@ header {
     border-radius: 0 0 10px 10px;
     padding: 0px 4px 4px;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0,0,0,0.2);
     border-top: 0px solid white;
     -webkit-transition-duration: 1s;
     -o-transition-duration: 1s;

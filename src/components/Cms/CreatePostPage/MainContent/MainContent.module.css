@@ -95,6 +95,12 @@
     background-color: #707070;
 }
 
+.wrapTextArea button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .editModal textarea{
     resize: none;
     height: 100%;
@@ -102,6 +108,12 @@
 
 @media (max-width: 1024px) {
     .wraper{
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px){
+    .wrapTextArea{
         width: 90%;
     }
 }

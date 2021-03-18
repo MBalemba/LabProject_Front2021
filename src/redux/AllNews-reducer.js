@@ -16,7 +16,7 @@ const initialState = {
         query: '',
         isOld: false,
     },
-    limit: 4,
+    limit: 6,
     quantityRequest: 0,
     pageQuantity: 0,
     Posts: [

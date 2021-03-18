@@ -72,6 +72,8 @@
 Включает возможность удаления карточек, их редактирования, просмотра содержимого новости, так же доступна функция поиска интересующей карточки и фильтрации
 >![image](https://user-images.githubusercontent.com/68498352/111690141-e3227180-883d-11eb-92c7-15c62682b149.png)
 ![image](https://user-images.githubusercontent.com/68498352/111690561-66dc5e00-883e-11eb-8e66-988056de63e9.png)
+![image](https://user-images.githubusercontent.com/68498352/111693826-2f6fb080-8842-11eb-88ea-5a0161ebe3bc.png)
+
 
 
  

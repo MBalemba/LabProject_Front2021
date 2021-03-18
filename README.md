@@ -17,28 +17,42 @@
 * В командной строке перейти в папку LabProject_Front2021 и запустить команду `npm install` для загрузки всех необходимых зависимостей и пакетов
 * Команда `npm start` -  запустит проект
 * Откройте [http://localhost:3000](http://localhost:3000) для просмотра приложения в браузере
+***
+
+
+
+
+
 
 
 ## Демонстрация работы новостного портала
 
 ### _**Основная страница приложения**_
 >![image](https://user-images.githubusercontent.com/68498352/111598816-a83e2080-87e0-11eb-9080-0b7e996c44ff.png)
+
 ### **_Страница с новостью_**  
-![image](https://user-images.githubusercontent.com/68498352/111598865-b55b0f80-87e0-11eb-86b2-cbb85681377e.png)
+>![image](https://user-images.githubusercontent.com/68498352/111598865-b55b0f80-87e0-11eb-86b2-cbb85681377e.png)
+
 ### **_Выпадающее меню для выбора интересующей категории, не выбирая не одну из категорий и применяя фильтр будет осущевствлен просмотр по всем категориям -_** 
-![image](https://user-images.githubusercontent.com/68498352/111595822-9313c280-87dd-11eb-84bc-d59b750ba527.png)
+>![image](https://user-images.githubusercontent.com/68498352/111595822-9313c280-87dd-11eb-84bc-d59b750ba527.png)
+
 ### Страница, которая открывается после применения фильтра, есть возможность поиска записи, поиск работает только на те категории, которые вы выбрали в выпадающем меню -
-![image](https://user-images.githubusercontent.com/68498352/111598996-dc194600-87e0-11eb-9a90-cf4f5d205546.png)
+>![image](https://user-images.githubusercontent.com/68498352/111598996-dc194600-87e0-11eb-9a90-cf4f5d205546.png)
+
 ### **_ Для перехода в систему управлением контента введите в адресной строке [http://localhost:3000/login](http://localhost:3000)_**
->`http://localhost:3000/login` - адрес, который позволяет войти на страницу логинизации
-![image](https://user-images.githubusercontent.com/68498352/111599178-0ff46b80-87e1-11eb-8405-8e43dfc22961.png)
-![image](https://user-images.githubusercontent.com/68498352/111599302-31555780-87e1-11eb-9045-a3919d6253ea.png)
-![image](https://user-images.githubusercontent.com/68498352/111599454-55b13400-87e1-11eb-80e9-d0243a41ed9b.png)
-![image](https://user-images.githubusercontent.com/68498352/111599531-69f53100-87e1-11eb-988f-8dd389bbfc2d.png)
+>![image](https://user-images.githubusercontent.com/68498352/111599178-0ff46b80-87e1-11eb-8405-8e43dfc22961.png)
+
+>![image](https://user-images.githubusercontent.com/68498352/111599302-31555780-87e1-11eb-9045-a3919d6253ea.png)
+
+>![image](https://user-images.githubusercontent.com/68498352/111599454-55b13400-87e1-11eb-80e9-d0243a41ed9b.png)
+
+>![image](https://user-images.githubusercontent.com/68498352/111599531-69f53100-87e1-11eb-988f-8dd389bbfc2d.png)
+
 **_### Страница создания записи, открывается сразу после успешной логинизации_**
-![image](https://user-images.githubusercontent.com/68498352/111599637-8ee9a400-87e1-11eb-8586-b6d9cc2dde40.png)
-###  **_Страница для просмотра всех записей, включает возможность удаления карточек, их редактирования, просмотра содержимого новости, так же доступна функция поиска интересующей карточки и фильтрация:_**
-![image](https://user-images.githubusercontent.com/68498352/111600241-44b4f280-87e2-11eb-94d5-e2468fbfb4af.png)
+>![image](https://user-images.githubusercontent.com/68498352/111599637-8ee9a400-87e1-11eb-8586-b6d9cc2dde40.png)
+
+### **_Страница для просмотра всех записей, включает возможность удаления карточек, их редактирования, просмотра содержимого новости, так же доступна функция поиска интересующей карточки и фильтрация_**
+>![image](https://user-images.githubusercontent.com/68498352/111600241-44b4f280-87e2-11eb-94d5-e2468fbfb4af.png)
  
 
 

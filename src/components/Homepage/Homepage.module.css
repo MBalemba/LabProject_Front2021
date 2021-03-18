@@ -65,7 +65,6 @@
 @media (max-width: 768px) {
     .container {
         width: 100%;
-        max-width: 482px;
     }
     .sec {
         width: 100%;
@@ -84,7 +83,7 @@
 @media (max-width: 482px) {
     .sec {
         width: 100%;
-        background-color: rgba(230, 230, 230, 0);
+        background-color: rgba(230, 230, 230, 0.4);
     }
 }
 

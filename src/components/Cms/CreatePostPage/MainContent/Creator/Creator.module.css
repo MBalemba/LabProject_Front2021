@@ -186,6 +186,61 @@
 
 
 
+@media (max-width: 768px){
+
+    .addText button{
+        width: 60%;
+        height: 20%;
+        justify-content: center;
+    }
+    .addText button svg{
+        height: 100%;
+        width: 60%;
+    }
+}
+
+@media (max-width: 482px) {
+    .addText button{
+        width: 60%;
+        height: 40px;
+        justify-content: center;
+    }
+    .createwind{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .grip{
+        height: 32px;
+        width: 40px;
+        transform: translate(0px,-264px);
+        -webkit-transform: translate(0px,-264px);
+        -o-transform: translate(0px,-264px);
+        -moz-transform: translate(0px,-264px);
+    }
+    .grip.down{
+        height: 32px;
+        width: 40px;
+        transform: translate(0px,-264px);
+        -webkit-transform: translate(0px,-264px);
+        -o-transform: translate(0px,-264px);
+        -moz-transform: translate(0px,-264px);
+    }
+
+    .right button{
+        height: 20%;
+        width: 100%;
+    }
+
+    .right button svg{
+        height: 20px;
+        width: auto;
+    }
+
+
+}
+
+
 
 
 

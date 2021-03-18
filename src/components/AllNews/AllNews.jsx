@@ -64,7 +64,7 @@ class PostCreator extends Component {
 
 class AllNews extends Component {
     componentDidMount() {
-        if(this.props.AllNews.Posts.length===0){
+        if(this.props.AllNews.Posts.length===0 && !this.props.headerdata.some(el=>el.isFollow===true)){
             this.props.firstNeedPosts('');
         }
     }

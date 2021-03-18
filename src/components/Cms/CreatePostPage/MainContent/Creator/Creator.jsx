@@ -89,7 +89,7 @@ class Creator extends Component {
 
                         </textarea>
                             <button onClick={this.addText.bind(this)} disabled={!this.state.textInfo.trim()?true:false} >
-                                <p>Добавить блок с текстом на страницу</p>
+                                <p>Добавить текст</p>
                                 <svg id="plus" xmlns="http://www.w3.org/2000/svg" width="36.058" height="37.044"
                                      viewBox="0 0 36.058 37.044">
                                     <path id="Контур_232" data-name="Контур 232"

@@ -126,6 +126,7 @@
 }
 
 .avatarBlock{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -149,4 +150,16 @@
 
 .wrapAva input{
     display: none;
+}
+
+@media (max-width: 1024px) {
+    .wrapAva{
+        width: 90%;
+    }
+}
+
+@media (max-width: 482px) {
+    .underHead{
+        width: 80%;
+    }
 }

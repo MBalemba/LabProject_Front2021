@@ -4,7 +4,6 @@ import {Component} from "react";
 
 class ServerComponent extends Component {
     componentWillUnmount() {
-        debugger
     }
 
     constructor(props) {

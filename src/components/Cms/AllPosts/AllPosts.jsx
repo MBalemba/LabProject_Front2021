@@ -36,10 +36,7 @@ class PostCreator extends Component {
                         </div>
                         <div className={s.content}>
                             <NavLink onClick={(e) => {
-                                if (e.currentTarget.tagName === 'A' && e.altKey) {
-                                    console.log(e.target)
-                                    e.preventDefault();
-                                }
+                                this.props.AddElDeletedList(el.id);
                             }} to={`/new/${el.id}`}><h2>{el.title}</h2></NavLink>
                             <div className={s.also}>
                                 <div className={s.time}>
@@ -62,10 +59,7 @@ class PostCreator extends Component {
                                 </div>
 
                                 <NavLink onClick={(e) => {
-                                    if (e.currentTarget.tagName === 'A' && e.altKey) {
-                                        console.log(e.target)
-                                        e.preventDefault();
-                                    }
+                                    this.props.AddElDeletedList(el.id);
                                 }} to={'/CMS/CreatePostPage/' + el.id}>
                                     <button>
                                         <svg id="edit" xmlns="http://www.w3.org/2000/svg" width="25.77" height="25.64"
@@ -228,7 +222,7 @@ class AllPosts extends Component {
                             this.props.requestNextPosts(this.props.allPosts.params, this.props.allPosts.quantityRequest)
                         }
                     }} className={s.knopka}>Показать еще</a>
-                </div> : (this.props.allPosts.Posts.length === 0 ? <h1>Ничего не найдено</h1> : '')}
+                </div> : (this.props.allPosts.Posts.length === 0 ? <h1 className={s.h1}>Ничего не найдено</h1> : '')}
 
         </div>
 

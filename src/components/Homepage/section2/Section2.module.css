@@ -22,8 +22,8 @@
     grid-template-columns: 341px 682px 341px;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-            'small1 big small3'
-            'small4 big small5';
+            'small1 small2 small3'
+            'small4 small2 small5';
     height: 650px;
     width: 100%;
     max-height: 512px;
@@ -52,7 +52,7 @@
 }
 
 .child2 {
-    grid-area: big;
+    grid-area: small2;
 }
 
 .child3 {
@@ -108,29 +108,15 @@
         grid-template-columns: 341px 682px;
         grid-template-rows: 1fr 1fr;
         grid-template-areas:
-            'small1 big '
-            'small4 big ';
+            'small1 small2 '
+            'small3 small2 ';
         height: 650px;
         width: 100%;
         max-height: 512px;
-
-    }
-
-
-    .child1 {
-        grid-area: small1;
-    }
-
-    .child2 {
-        grid-area: big;
-    }
-
-    .child3 {
-        display: none;
-        grid-area: small3;
     }
 
     .child4 {
+        display: none;
         grid-area: small4;
     }
 
@@ -138,6 +124,9 @@
         display: none;
         grid-area: small5;
     }
+
+
+
 }
 
 @media (max-width: 1024px) {
@@ -155,19 +144,9 @@
 
     }
 
-
-    .child1 {
-        grid-area: small1;
-    }
-
     .child2 {
-        grid-area: big;
         display: none;
-    }
-
-    .child3 {
-        display: block;
-        grid-area: small3;
+        grid-area: small2;
     }
 
     .child4 {
@@ -190,7 +169,7 @@
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas:
             'small1'
-            'big'
+            'small2'
             'small3'
             'small4'
             'small5';
@@ -200,72 +179,25 @@
     }
 
 
-    .child1 {
-        grid-area: small1;
-    }
-
-    .child2 {
-        grid-area: big;
-        display: none;
-    }
-
-    .child3 {
-        display: block;
-        grid-area: small3;
-    }
-
-    .child4 {
-        display: block;
-        grid-area: small4;
-    }
-
-    .child5 {
-        display: block;
-        grid-area: small5;
-    }
 }
 
 @media (max-width: 482px) {
     .newsBlock {
 
-        grid-template-columns: 320px;
+        grid-template-columns: 310px;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         grid-template-areas:
             'small1'
-            'big'
+            'small2'
             'small3'
             'small4'
             'small5';
         height: auto;
-        width: 100%;
         max-height: 512px;
 
     }
 
 
-    .child1 {
-        grid-area: small1;
-    }
-
-    .child2 {
-        grid-area: big;
-        display: none;
-    }
-
-    .child3 {
-        display: block;
-        grid-area: small3;
-    }
-
-    .child4 {
-        display: block;
-        grid-area: small4;
-    }
-
-    .child5 {
-        display: block;
-        grid-area: small5;
-    }
 }
 
 

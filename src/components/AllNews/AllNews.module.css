@@ -2,7 +2,6 @@
     box-shadow: 0 0 5px 2px;
     margin-top: 110px;
     margin-bottom: 110px;
-    padding: 50px;
 }
 
 .d1 {
@@ -10,6 +9,7 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding:20px 0px 30px 0;
 }
 
@@ -48,7 +48,11 @@
 }
 
 .title{
-    box-shadow: #E6E9EC;
+    margin-bottom: 30px;
+    text-align: center;
+    justify-content: center;
+    text-shadow: #F78306 0 0 2px;
+    box-shadow: 0 0 5px 2px #F78306;
     display: inline-block;
     font-family: "Segoe UI";
     color: #1F2024;
@@ -168,3 +172,29 @@ a.knopka {
 }
 a.knopka:hover { background-color: #fbba74; } /* при наведении курсора мышки */
 a.knopka:active { background-color: #F78306; } /* при нажатии */
+
+
+@media (max-width: 1024px) {
+    .newsBlock{
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .d1{
+        justify-content: space-between;
+    }
+    .d1 input{
+        width: 100%;
+    }
+    .newsBlock{
+
+    }
+}
+
+@media (max-width: 482px) {
+
+    .newsBlock{
+        grid-template-columns: 1fr;
+    }
+}

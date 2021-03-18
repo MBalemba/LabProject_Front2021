@@ -6,6 +6,14 @@
     align-items: center;
     justify-content: center;
 }
+.h1{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    text-shadow: #F78306 0 0 2px;
+    box-shadow: 0 0 5px 2px #F78306;
+
+}
 
 .menu{
     width: 90vw;

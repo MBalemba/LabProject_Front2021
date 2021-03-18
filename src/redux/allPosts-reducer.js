@@ -71,7 +71,6 @@ const allPostsReducer = (state = initialState, action) => {
                 params: action.params
             }
         case  ADD_USERS:
-            debugger
             return {
                 ...state,
                 quantityRequest: state.quantityRequest+1,
@@ -167,7 +166,7 @@ export const setPageQuantity = (numb) => {
 
 
 export const firstNeedPosts = (query, isOld=false, searchStr='') =>(dispatch)=>{
-    debugger;
+
     dispatch(paramsChange(query, isOld, searchStr));
     PostsAPI.getPosts(getQuery(query, isOld,1,initialState.limit, searchStr)).then(response=>{
         let pageQuantity = Math.ceil(response.headers['x-total-count']/initialState.limit);

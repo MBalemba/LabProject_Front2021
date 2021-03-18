@@ -27,7 +27,6 @@ class HeaderContainer extends Component {
         this.setState({
             ...this.state
         })
-        debugger
         obj.isFollow = !obj.isFollow;
         this.props.changeFollow(obj);
     }
@@ -115,19 +114,19 @@ class HeaderContainer extends Component {
                                             e.preventDefault();
                                             this.props.changeOld(true)
                                         }} className={this.props.isOld ? s.calcButton + ' ' + s.active : s.calcButton}>
-                                            Сначала старые
+                                            <p>Сначала старые</p>
                                         </div>
                                         <div onClick={(e) => {
                                             e.preventDefault();
                                             this.props.changeOld(false)
                                         }} className={!this.props.isOld ? s.calcButton + ' ' + s.active : s.calcButton}>
-                                            Сначала новые
+                                            <p>Сначала новые</p>
                                         </div>
                                         <div onClick={(e) => {
                                             e.preventDefault();
                                             this.props.filterClearCategory()
                                         }} className={s.calcButton}>
-                                            Сбросить фильтр
+                                            <p>Сбросить фильтр</p>
                                         </div>
                                         <NavLink to={'/allNews'} onClick={() => {
                                             this.props.firstNeedPosts(this.props.headerdata.filter((el) => el.isFollow === true).map(el => {

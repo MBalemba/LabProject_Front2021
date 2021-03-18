@@ -11,7 +11,7 @@ import AllNews from "./components/AllNews/AllNews";
 class App extends Component {
     render() {
         return (
-            <BrowserRouter>
+            <>
 
                 <Route exact path='/'render={() => <Redirect to={'/homepage'} />}/>
                 <Route exact path='/CMS'render={() =>  <Redirect to={'/CMS/CreatePostPage'} />}/>
@@ -39,7 +39,7 @@ class App extends Component {
                 <Route path='/CMS' render={() => <Cms/>}/>
 
 
-            </BrowserRouter>
+            </>
         );
     }
 };

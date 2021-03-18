@@ -46,7 +46,6 @@ export const PostsAPI = {
     },
 
     putRequest(obj){
-        debugger
         return instance1.put(`/Posts/${obj.id}`,{...obj},{
             headers: {
                 'Authorization':'Bearer '+sessionStorage.getItem('key')
